@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             GoogleMapsGui mapsGui = GoogleMapsGui.getInstance();
-            JPanel p = mapsGui.getCanvas();
+            JScrollPane p = mapsGui.getCanvas();
             JFrame f = new JFrame();
             f.setContentPane(p);
             f.setSize(400, 300);
