@@ -1,5 +1,5 @@
-/**
- * A static map of UTSG campus
+package Map; /**
+ * A singleton map of UTSG campus
  *
  * Reference from:
  * https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
@@ -32,7 +32,9 @@ public class GoogleMapsGui extends JPanel {
     private BufferedImage image;
     private JPanel canvas;
 
-    public GoogleMapsGui() {
+    private static GoogleMapsGui instance = null;
+
+    private GoogleMapsGui() {
         try {
             String utsgCampusMap = "https://www.comm.utoronto.ca/~valaee/University%20of%20Toronto%20-%20St_%20George%20Campus%20Map_files/map_files/webmap.gif";
             this.image = ImageIO.read(new URL(utsgCampusMap));
@@ -55,19 +57,21 @@ public class GoogleMapsGui extends JPanel {
         add(sp, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JPanel p = new GoogleMapsGui();
-                JFrame f = new JFrame();
-                f.setContentPane(p);
-                f.setSize(400, 300);
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
+    public static GoogleMapsGui getInstance() {
+        if(instance == null) {
+            instance = new GoogleMapsGui();
+        }
+        return instance;
     }
+
+    public JPanel getCanvas() {
+        return canvas;
+    }
+
+    public void setCanvas(JPanel canvas) {
+        this.canvas = canvas;
+    }
+
 
 //    final Logger log = Logger.getLogger(GoogleMapsGui.class.getName());
 //    private JPanel contentPane;
