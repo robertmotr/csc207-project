@@ -1,11 +1,15 @@
 /**
  * A static map of UTSG campus
  *
- * Reference from: https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
+ * Reference from:
+ * https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
+ * https://www.tutorialspoint.com/java-program-to-display-a-webpage-in-jeditorpane
  */
 
 
-
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -35,7 +39,28 @@ public class GoogleMapsGui extends JFrame {
                     e.printStackTrace();
                 }
             }
+
+
+
         });
+//        String utsgCampusAdre = "27King's+College+Cir,Toronto,ON";
+//        String apiKey = "AIzaSyBfybhe83kPUTqNm-wWo7S8PUVUeKW7HIg";
+//
+//        JEditorPane editorPane = new JEditorPane();
+//        try {
+//            editorPane.setPage("https://map.utoronto.ca/?id=1809#!ct/45469?s/");
+//        } catch (IOException e) {
+//            editorPane.setContentType("text/html");
+//            editorPane.setText("<html>Connection issues!</html>");
+//        }
+//        JScrollPane pane = new JScrollPane(editorPane);
+//        JFrame frame = new JFrame();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.getContentPane().add(pane);
+//        frame.setSize(500, 300);
+//        frame.setVisible(true);
+//
+
     }
 
     /**
@@ -87,12 +112,14 @@ public class GoogleMapsGui extends JFrame {
             log.info("Generated url");
 
             String destinationFile = "image.jpg";
+            String utsgCampusAdre = "27King's+College+Cir,Toronto,ON";
+            String apiKey = "AIzaSyBfybhe83kPUTqNm-wWo7S8PUVUeKW7HIg";
 
             // read the map image from Google
             // then save it to a local file: image.jpg
             //
 //            URL url = new URL(imageUrl);
-            URL url = new URL("https://maps.googleapis.com/maps/api/staticmap?center=27King's+College+Cir,Toronto,ON&zoom=16&size=800x800&key=AIzaSyBfybhe83kPUTqNm-wWo7S8PUVUeKW7HIg");
+            URL url = new URL("https://www.comm.utoronto.ca/~valaee/University%20of%20Toronto%20-%20St_%20George%20Campus%20Map_files/map_files/webmap.gif");
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
 
@@ -116,11 +143,11 @@ public class GoogleMapsGui extends JFrame {
         }// fin getting and storing image
 
         ImageIcon imageIcon = new ImageIcon((new ImageIcon("image.jpg"))
-                .getImage().getScaledInstance(1000, 800,
+                .getImage().getScaledInstance(1452, 1284,
                         java.awt.Image.SCALE_SMOOTH));
         contentPane.setLayout(null);
         JLabel imgMap = new JLabel(imageIcon);
-        imgMap.setBounds(5, 5, 1000, 800);
+        imgMap.setBounds(0, 100, 1300, 900);
         contentPane.add(imgMap);
     }
 
