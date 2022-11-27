@@ -1,5 +1,5 @@
-/**
- * A static map of UTSG campus
+package Map; /**
+ * A singleton map of UTSG campus
  *
  * Reference from:
  * https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
@@ -31,8 +31,13 @@ public class GoogleMapsGui extends JPanel {
     private static final long serialVersionUID = 1L;
     private BufferedImage image;
     private JPanel canvas;
+    private JScrollPane scrollP;
 
-    public GoogleMapsGui() {
+    private static GoogleMapsGui instance = null;
+
+    private GoogleMapsGui() {
+
+        //Get UTSG map from web
         try {
             String utsgCampusMap = "https://www.comm.utoronto.ca/~valaee/University%20of%20Toronto%20-%20St_%20George%20Campus%20Map_files/map_files/webmap.gif";
             this.image = ImageIO.read(new URL(utsgCampusMap));
@@ -40,6 +45,7 @@ public class GoogleMapsGui extends JPanel {
             Logger.getLogger(GoogleMapsGui.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //Create canvas from this.image
         this.canvas = new JPanel() {
             private static final long serialVersionUID = 1L;
             @Override
@@ -48,26 +54,35 @@ public class GoogleMapsGui extends JPanel {
                 g.drawImage(image, 0, 0, null);
             }
         };
+
+        //For Search Bar
         canvas.add(new JButton("Currently I do nothing"));
+
+        //Set canvas dimensions to utsg campus map dimensions
         canvas.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
-        JScrollPane sp = new JScrollPane(canvas);
+
+        //Allow scrolling feature on the canvas map and fit the dimensions
+        this.scrollP = new JScrollPane(canvas);
         setLayout(new BorderLayout());
-        add(sp, BorderLayout.CENTER);
+        add(this.scrollP, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JPanel p = new GoogleMapsGui();
-                JFrame f = new JFrame();
-                f.setContentPane(p);
-                f.setSize(400, 300);
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
+    //Singleton Design Pattern
+    public static GoogleMapsGui getInstance() {
+        if(instance == null) {
+            instance = new GoogleMapsGui();
+        }
+        return instance;
     }
+
+    public JScrollPane getCanvas() {
+        return scrollP;
+    }
+
+    public void setCanvas(JScrollPane scrollP) {
+        this.scrollP = scrollP;
+    }
+
 
 //    final Logger log = Logger.getLogger(GoogleMapsGui.class.getName());
 //    private JPanel contentPane;
