@@ -1,22 +1,34 @@
-import Map.GoogleMapsGui;
+import Map.Controller;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import java.io.IOException;
 
-import javax.swing.*;
 
 /**
  * Main class used to store the main method responsible for launching the application.
  *
  */
 
-public class Main {
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("resources/gui.fxml"));
+
+        primaryStage.setTitle("Interactive UTSG Map");
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            GoogleMapsGui mapsGui = GoogleMapsGui.getInstance();
-            JScrollPane p = mapsGui.getCanvas();
-            JFrame f = new JFrame();
-            f.setContentPane(p);
-            f.setSize(400, 300);
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            f.setVisible(true);
-        });
+        launch(args);
     }
 }
