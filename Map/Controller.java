@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -28,7 +30,13 @@ public class Controller implements Initializable {
     @FXML
     private GridPane guiPane;
 
+    @FXML
+    private VBox boxStuff;
+
     private GoogleMapsGui instance;
+
+    @FXML
+    private TextField searchBar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
