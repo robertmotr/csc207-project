@@ -22,7 +22,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("resources/gui.fxml"));
 
         primaryStage.setTitle("Interactive UTSG Map");
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);
         primaryStage.show();
 
