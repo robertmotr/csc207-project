@@ -19,15 +19,15 @@
 
 <GridPane fx:id="guiPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Map.Controller">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="499.0" minWidth="10.0" prefWidth="455.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="145.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="1161.6" minWidth="1161.6" prefWidth="1161.6" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="758.4" minWidth="758.4" prefWidth="758.4" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="337.0" minHeight="10.0" prefHeight="337.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="81.6" minHeight="81.6" prefHeight="81.6" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="998.4" minHeight="998.4" prefHeight="998.4" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox minWidth="0.0" prefHeight="80.0" prefWidth="1500.0">
          <children>
             <MenuBar>
               <menus>
@@ -60,17 +60,17 @@
             </HBox>
          </children>
       </VBox>
-      <VBox GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <VBox minWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
             <TreeView fx:id="treeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <AnchorPane fx:id="mapPane" GridPane.rowIndex="1">
+      <AnchorPane fx:id="mapPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="998.4" prefWidth="1161.6" GridPane.rowIndex="1">
          <children>
-            <ImageView fx:id="mapImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ImageView fx:id="mapImage" fitHeight="998.4" fitWidth="1161.6" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-21.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="21.0" />
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+      <VBox alignment="CENTER" GridPane.columnIndex="1">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Results" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
