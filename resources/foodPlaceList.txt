@@ -1,0 +1,320 @@
+Arbor Room,?id=1809&cId=48669&mId=638876
+Café AC,?id=1809&cId=48669&mId=494925
+Café Reznikoff,?id=1809&cId=48669&mId=494930
+CampusOne,?id=1809&cId=48669&mId=494933
+Chestnut Dining Hall,?id=1809&cId=48669&mId=494937
+Faculty Club,?id=1809&cId=48669&mId=638873
+Gallery Grill,?id=1809&cId=48669&mId=638869
+Goodmans LLP Cafe at Law,?id=1809&cId=48669&mId=494939
+Hard Hat Cafe,?id=1809&cId=48669&mId=494943
+Howard Ferguson Dining Hall,?id=1809&cId=48669&mId=494945
+Innis Café,?id=1809&cId=48669&mId=494949
+McLennan Grab 'N' Go,?id=1809&cId=48669&mId=494951
+Music Café,?id=1809&cId=48669&mId=494954
+Ned's Cafe,?id=1809&cId=48669&mId=506461
+New College Dining Hall,?id=1809&cId=48669&mId=494957
+OISE Café,?id=1809&cId=48669&mId=494961
+Ramen Ya!,?id=1809&cId=48669&mId=494966
+Robarts Cafeteria,?id=1809&cId=48669&mId=494969
+Second Cup Kiosk,?id=1809&cId=48669&mId=494972
+Second Cup Koffler,?id=1809&cId=48669&mId=494973
+Second Cup Pharmacy,?id=1809&cId=48669&mId=494976
+Second Cup Rotman,?id=1809&cId=48669&mId=494978
+Second Cup Sid Smith,?id=1809&cId=48669&mId=494980
+Second Cup Woodsworth,?id=1809&cId=48669&mId=494982
+Sid Smith Cafeteria,?id=1809&cId=48669&mId=494986
+So Sushi,?id=1809&cId=48669&mId=494995
+Starbucks Medical Sciences Building,?id=1809&cId=48669&mId=494999
+Starbucks Robarts,?id=1809&cId=48669&mId=495001
+The Cube,?id=1809&cId=48669&mId=495006
+The Exchange Café,?id=1809&cId=48669&mId=495010
+The Green Beet,?id=1809&cId=48669&mId=495012
+Tim Hortons Medical Sciences Building,?id=1809&cId=48669&mId=495014
+Tortillas Robarts,?id=1809&cId=48669&mId=495020
+Tortillas Sid Smith,?id=1809&cId=48669&mId=495016
+VEDA Multi-Faith Centre,?id=1809&cId=48669&mId=495023
+VEDA Sandford Fleming,?id=1809&cId=48669&mId=495026
+Café AC,?id=1809&cId=48661&mId=491121
+Café Reznikoff,?id=1809&cId=48661&mId=491151
+CampusOne,?id=1809&cId=48661&mId=491172
+Chestnut Dining Hall,?id=1809&cId=48661&mId=490946
+Goodmans LLP Cafe at Law,?id=1809&cId=48661&mId=491066
+Gourmet Burger House MSB,?id=1809&cId=48661&mId=491181
+Gourmet Burger House Sid Smith,?id=1809&cId=48661&mId=491147
+Hard Hat Cafe,?id=1809&cId=48661&mId=491141
+Howard Ferguson Dining Hall,?id=1809&cId=48661&mId=491095
+Innis Café,?id=1809&cId=48661&mId=491085
+McLennan Grab 'N' Go,?id=1809&cId=48661&mId=491166
+Music Café,?id=1809&cId=48661&mId=491178
+New College Dining Hall,?id=1809&cId=48661&mId=490955
+Not Just Greens,?id=1809&cId=48661&mId=491045
+OISE Café,?id=1809&cId=48661&mId=490935
+Pasta Pappardelle Robarts,?id=1809&cId=48661&mId=491051
+Ramen Ya!,?id=1809&cId=48661&mId=491105
+Robarts Cafeteria,?id=1809&cId=48661&mId=490901
+Second Cup Kiosk,?id=1809&cId=48661&mId=490980
+Second Cup Koffler,?id=1809&cId=48661&mId=491004
+Second Cup Pharmacy,?id=1809&cId=48661&mId=490964
+Second Cup Rotman,?id=1809&cId=48661&mId=490988
+Second Cup Sid Smith,?id=1809&cId=48661&mId=490972
+Second Cup Woodsworth,?id=1809&cId=48661&mId=490996
+Sid Smith Cafeteria,?id=1809&cId=48661&mId=490889
+So Sushi,?id=1809&cId=48661&mId=494987
+Starbucks Medical Sciences Building,?id=1809&cId=48661&mId=491113
+Starbucks Robarts,?id=1809&cId=48661&mId=491127
+Stone Oven Pizzeria Medical Sciences Building,?id=1809&cId=48661&mId=491160
+Stone Oven Pizzeria Robarts,?id=1809&cId=48661&mId=491163
+The Cube,?id=1809&cId=48661&mId=490913
+The Exchange Café,?id=1809&cId=48661&mId=491074
+The Green Beet,?id=1809&cId=48661&mId=491056
+Tim Hortons Medical Sciences Building,?id=1809&cId=48661&mId=491135
+Tim Hortons Sid Smith,?id=1809&cId=48661&mId=491012
+Tortillas Robarts,?id=1809&cId=48661&mId=491037
+Tortillas Sid Smith,?id=1809&cId=48661&mId=491029
+VEDA Multi-Faith Centre,?id=1809&cId=48661&mId=491019
+VEDA Sandford Fleming,?id=1809&cId=48661&mId=490924
+Chestnut Dining Hall,?id=1809&cId=48662&mId=490947
+Gallery Grill,?id=1809&cId=48662&mId=638871
+Goodmans LLP Cafe at Law,?id=1809&cId=48662&mId=491067
+New College Dining Hall,?id=1809&cId=48662&mId=490956
+Not Just Greens,?id=1809&cId=48662&mId=491046
+OISE Café,?id=1809&cId=48662&mId=490936
+Pasta Pappardelle Robarts,?id=1809&cId=48662&mId=491052
+Robarts Cafeteria,?id=1809&cId=48662&mId=490902
+Second Cup Kiosk,?id=1809&cId=48662&mId=490981
+Second Cup Koffler,?id=1809&cId=48662&mId=491005
+Second Cup Pharmacy,?id=1809&cId=48662&mId=490965
+Second Cup Rotman,?id=1809&cId=48662&mId=490989
+Second Cup Sid Smith,?id=1809&cId=48662&mId=490973
+Second Cup Woodsworth,?id=1809&cId=48662&mId=490997
+Sid Smith Cafeteria,?id=1809&cId=48662&mId=490890
+So Sushi,?id=1809&cId=48662&mId=494988
+The Cube,?id=1809&cId=48662&mId=490914
+The Green Beet,?id=1809&cId=48662&mId=491057
+Tim Hortons Sid Smith,?id=1809&cId=48662&mId=491013
+Tortillas Robarts,?id=1809&cId=48662&mId=491038
+Tortillas Sid Smith,?id=1809&cId=48662&mId=491030
+VEDA Multi-Faith Centre,?id=1809&cId=48662&mId=491020
+VEDA Sandford Fleming,?id=1809&cId=48662&mId=490925
+Café AC,?id=1809&cId=48663&mId=491122
+Chestnut Dining Hall,?id=1809&cId=48663&mId=490948
+Hard Hat Cafe,?id=1809&cId=48663&mId=491142
+Howard Ferguson Dining Hall,?id=1809&cId=48663&mId=491096
+Innis Café,?id=1809&cId=48663&mId=491086
+New College Dining Hall,?id=1809&cId=48663&mId=490957
+OISE Café,?id=1809&cId=48663&mId=490937
+Ramen Ya!,?id=1809&cId=48663&mId=491106
+Robarts Cafeteria,?id=1809&cId=48663&mId=490903
+Second Cup Kiosk,?id=1809&cId=48663&mId=490982
+Second Cup Koffler,?id=1809&cId=48663&mId=491006
+Second Cup Pharmacy,?id=1809&cId=48663&mId=490966
+Second Cup Rotman,?id=1809&cId=48663&mId=490990
+Second Cup Sid Smith,?id=1809&cId=48663&mId=490974
+Second Cup Woodsworth,?id=1809&cId=48663&mId=490998
+Sid Smith Cafeteria,?id=1809&cId=48663&mId=490891
+So Sushi,?id=1809&cId=48663&mId=494989
+Starbucks Medical Sciences Building,?id=1809&cId=48663&mId=491114
+Starbucks Robarts,?id=1809&cId=48663&mId=491128
+The Cube,?id=1809&cId=48663&mId=490915
+The Exchange Café,?id=1809&cId=48663&mId=491075
+Tim Hortons Medical Sciences Building,?id=1809&cId=48663&mId=491136
+Tim Hortons Sid Smith,?id=1809&cId=48663&mId=491014
+VEDA Sandford Fleming,?id=1809&cId=48663&mId=490926
+Café Reznikoff,?id=1809&cId=48664&mId=494927
+Chestnut Dining Hall,?id=1809&cId=48664&mId=494935
+Gourmet Burger House Sid Smith,?id=1809&cId=48664&mId=494940
+Howard Ferguson Dining Hall,?id=1809&cId=48664&mId=494944
+Innis Café,?id=1809&cId=48664&mId=494947
+New College Dining Hall,?id=1809&cId=48664&mId=494955
+Not Just Greens,?id=1809&cId=48664&mId=494958
+OISE Café,?id=1809&cId=48664&mId=494959
+Pasta Pappardelle Robarts,?id=1809&cId=48664&mId=494962
+Ramen Ya!,?id=1809&cId=48664&mId=494963
+Robarts Cafeteria,?id=1809&cId=48664&mId=494967
+Sid Smith Cafeteria,?id=1809&cId=48664&mId=494983
+So Sushi,?id=1809&cId=48664&mId=494990
+Stone Oven Pizzeria Medical Sciences Building,?id=1809&cId=48664&mId=495002
+Stone Oven Pizzeria Robarts,?id=1809&cId=48664&mId=495003
+The Cube,?id=1809&cId=48664&mId=495004
+The Exchange Café,?id=1809&cId=48664&mId=495007
+Tortillas Robarts,?id=1809&cId=48664&mId=495018
+Tortillas Sid Smith,?id=1809&cId=48664&mId=495017
+VEDA Multi-Faith Centre,?id=1809&cId=48664&mId=495021
+VEDA Sandford Fleming,?id=1809&cId=48664&mId=495024
+Wolfond Centre for Jewish Campus Life,?id=1809&cId=48675&mId=491183
+Arbor Room,?id=1809&cId=48665&mId=638877
+Café AC,?id=1809&cId=48665&mId=491123
+CampusOne,?id=1809&cId=48665&mId=491173
+Chestnut Dining Hall,?id=1809&cId=48665&mId=490950
+Faculty Club,?id=1809&cId=48665&mId=638875
+Gallery Grill,?id=1809&cId=48665&mId=638872
+Goodmans LLP Cafe at Law,?id=1809&cId=48665&mId=491068
+Howard Ferguson Dining Hall,?id=1809&cId=48665&mId=491098
+Innis Café,?id=1809&cId=48665&mId=491088
+McLennan Grab 'N' Go,?id=1809&cId=48665&mId=491167
+Ned's Cafe,?id=1809&cId=48665&mId=506462
+New College Dining Hall,?id=1809&cId=48665&mId=490959
+Not Just Greens,?id=1809&cId=48665&mId=491048
+OISE Café,?id=1809&cId=48665&mId=490939
+Pasta Pappardelle Robarts,?id=1809&cId=48665&mId=491054
+Ramen Ya!,?id=1809&cId=48665&mId=491108
+Robarts Cafeteria,?id=1809&cId=48665&mId=490905
+Second Cup Kiosk,?id=1809&cId=48665&mId=490983
+Second Cup Koffler,?id=1809&cId=48665&mId=491007
+Second Cup Pharmacy,?id=1809&cId=48665&mId=490967
+Second Cup Rotman,?id=1809&cId=48665&mId=490991
+Second Cup Sid Smith,?id=1809&cId=48665&mId=490975
+Second Cup Woodsworth,?id=1809&cId=48665&mId=490999
+Sid Smith Cafeteria,?id=1809&cId=48665&mId=490893
+So Sushi,?id=1809&cId=48665&mId=494991
+Starbucks Medical Sciences Building,?id=1809&cId=48665&mId=491115
+Starbucks Robarts,?id=1809&cId=48665&mId=491129
+The Cube,?id=1809&cId=48665&mId=490917
+The Exchange Café,?id=1809&cId=48665&mId=491077
+The Green Beet,?id=1809&cId=48665&mId=491058
+Tim Hortons Medical Sciences Building,?id=1809&cId=48665&mId=491137
+Tim Hortons Sid Smith,?id=1809&cId=48665&mId=491015
+Tortillas Robarts,?id=1809&cId=48665&mId=491040
+Tortillas Sid Smith,?id=1809&cId=48665&mId=491032
+VEDA Multi-Faith Centre,?id=1809&cId=48665&mId=491022
+VEDA Sandford Fleming,?id=1809&cId=48665&mId=490928
+Wolfond Centre for Jewish Campus Life,?id=1809&cId=48665&mId=491184
+Gourmet Burger House Sid Smith,?id=1809&cId=48674&mId=491149
+Café AC,?id=1809&cId=48666&mId=491124
+Café Reznikoff,?id=1809&cId=48666&mId=491153
+Goodmans LLP Cafe at Law,?id=1809&cId=48666&mId=491069
+Hard Hat Cafe,?id=1809&cId=48666&mId=491143
+Howard Ferguson Dining Hall,?id=1809&cId=48666&mId=491099
+Innis Café,?id=1809&cId=48666&mId=491089
+McLennan Grab 'N' Go,?id=1809&cId=48666&mId=491168
+OISE Café,?id=1809&cId=48666&mId=490940
+Robarts Cafeteria,?id=1809&cId=48666&mId=490906
+Second Cup Kiosk,?id=1809&cId=48666&mId=490984
+Second Cup Koffler,?id=1809&cId=48666&mId=491008
+Second Cup Pharmacy,?id=1809&cId=48666&mId=490968
+Second Cup Rotman,?id=1809&cId=48666&mId=490992
+Second Cup Sid Smith,?id=1809&cId=48666&mId=490976
+Second Cup Woodsworth,?id=1809&cId=48666&mId=491000
+Sid Smith Cafeteria,?id=1809&cId=48666&mId=490894
+So Sushi,?id=1809&cId=48666&mId=494992
+Starbucks Medical Sciences Building,?id=1809&cId=48666&mId=491116
+Starbucks Robarts,?id=1809&cId=48666&mId=491130
+The Cube,?id=1809&cId=48666&mId=490918
+The Exchange Café,?id=1809&cId=48666&mId=491078
+The Green Beet,?id=1809&cId=48666&mId=491059
+VEDA Multi-Faith Centre,?id=1809&cId=48666&mId=491023
+VEDA Sandford Fleming,?id=1809&cId=48666&mId=490929
+Café Reznikoff,?id=1809&cId=48671&mId=494928
+CampusOne,?id=1809&cId=48671&mId=494931
+Hard Hat Cafe,?id=1809&cId=48671&mId=494942
+Innis Café,?id=1809&cId=48671&mId=494948
+Ramen Ya!,?id=1809&cId=48671&mId=494964
+Robarts Cafeteria,?id=1809&cId=48671&mId=494970
+Sid Smith Cafeteria,?id=1809&cId=48671&mId=494984
+The Exchange Café,?id=1809&cId=48671&mId=495008
+Wolfond Centre for Jewish Campus Life,?id=1809&cId=48671&mId=495027
+CampusOne,?id=1809&cId=48673&mId=494932
+Ned's Cafe,?id=1809&cId=48673&mId=506463
+Starbucks Medical Sciences Building,?id=1809&cId=48673&mId=494997
+Café Reznikoff,?id=1809&cId=48667&mId=491155
+Howard Ferguson Dining Hall,?id=1809&cId=48667&mId=491100
+OISE Café,?id=1809&cId=48667&mId=490941
+Robarts Cafeteria,?id=1809&cId=48667&mId=490908
+Sid Smith Cafeteria,?id=1809&cId=48667&mId=490896
+So Sushi,?id=1809&cId=48667&mId=494993
+The Cube,?id=1809&cId=48667&mId=490919
+The Exchange Café,?id=1809&cId=48667&mId=491080
+The Green Beet,?id=1809&cId=48667&mId=491061
+VEDA Multi-Faith Centre,?id=1809&cId=48667&mId=491024
+VEDA Sandford Fleming,?id=1809&cId=48667&mId=490930
+Café AC,?id=1809&cId=48668&mId=494926
+Café Reznikoff,?id=1809&cId=48668&mId=494929
+CampusOne,?id=1809&cId=48668&mId=494934
+Chestnut Dining Hall,?id=1809&cId=48668&mId=494936
+Goodmans LLP Cafe at Law,?id=1809&cId=48668&mId=494938
+Hard Hat Cafe,?id=1809&cId=48668&mId=494941
+Howard Ferguson Dining Hall,?id=1809&cId=48668&mId=494946
+Innis Café,?id=1809&cId=48668&mId=494950
+McLennan Grab 'N' Go,?id=1809&cId=48668&mId=494952
+Music Café,?id=1809&cId=48668&mId=494953
+Ned's Cafe,?id=1809&cId=48668&mId=506464
+New College Dining Hall,?id=1809&cId=48668&mId=494956
+OISE Café,?id=1809&cId=48668&mId=494960
+Ramen Ya!,?id=1809&cId=48668&mId=494965
+Robarts Cafeteria,?id=1809&cId=48668&mId=494968
+Second Cup Kiosk,?id=1809&cId=48668&mId=494971
+Second Cup Koffler,?id=1809&cId=48668&mId=494974
+Second Cup Pharmacy,?id=1809&cId=48668&mId=494975
+Second Cup Rotman,?id=1809&cId=48668&mId=494977
+Second Cup Sid Smith,?id=1809&cId=48668&mId=494979
+Second Cup Woodsworth,?id=1809&cId=48668&mId=494981
+Sid Smith Cafeteria,?id=1809&cId=48668&mId=494985
+So Sushi,?id=1809&cId=48668&mId=494994
+Starbucks Medical Sciences Building,?id=1809&cId=48668&mId=494998
+Starbucks Robarts,?id=1809&cId=48668&mId=495000
+The Cube,?id=1809&cId=48668&mId=495005
+The Exchange Café,?id=1809&cId=48668&mId=495009
+The Green Beet,?id=1809&cId=48668&mId=495011
+Tim Hortons Medical Sciences Building,?id=1809&cId=48668&mId=495013
+Tortillas Robarts,?id=1809&cId=48668&mId=495019
+Tortillas Sid Smith,?id=1809&cId=48668&mId=495015
+VEDA Multi-Faith Centre,?id=1809&cId=48668&mId=495022
+VEDA Sandford Fleming,?id=1809&cId=48668&mId=495025
+Café Reznikoff,?id=1809&cId=48670&mId=491158
+Chestnut Dining Hall,?id=1809&cId=48670&mId=490953
+Goodmans LLP Cafe at Law,?id=1809&cId=48670&mId=491072
+Howard Ferguson Dining Hall,?id=1809&cId=48670&mId=491103
+Innis Café,?id=1809&cId=48670&mId=491093
+Ned's Cafe,?id=1809&cId=48670&mId=506465
+New College Dining Hall,?id=1809&cId=48670&mId=490962
+Not Just Greens,?id=1809&cId=48670&mId=491049
+OISE Café,?id=1809&cId=48670&mId=490944
+Robarts Cafeteria,?id=1809&cId=48670&mId=490911
+Sid Smith Cafeteria,?id=1809&cId=48670&mId=490899
+So Sushi,?id=1809&cId=48670&mId=494996
+Starbucks Robarts,?id=1809&cId=48670&mId=491133
+The Cube,?id=1809&cId=48670&mId=490922
+The Exchange Café,?id=1809&cId=48670&mId=491083
+The Green Beet,?id=1809&cId=48670&mId=491064
+Tortillas Robarts,?id=1809&cId=48670&mId=491043
+Tortillas Sid Smith,?id=1809&cId=48670&mId=491035
+VEDA Multi-Faith Centre,?id=1809&cId=48670&mId=491027
+VEDA Sandford Fleming,?id=1809&cId=48670&mId=490933
+Arbor Room,?id=1809&cId=48672&mId=638878
+Café Reznikoff,?id=1809&cId=48672&mId=491159
+Chestnut Dining Hall,?id=1809&cId=48672&mId=490954
+Faculty Club,?id=1809&cId=48672&mId=638874
+Gallery Grill,?id=1809&cId=48672&mId=638870
+Goodmans LLP Cafe at Law,?id=1809&cId=48672&mId=491073
+Gourmet Burger House MSB,?id=1809&cId=48672&mId=491182
+Gourmet Burger House Sid Smith,?id=1809&cId=48672&mId=491150
+Howard Ferguson Dining Hall,?id=1809&cId=48672&mId=491104
+Innis Café,?id=1809&cId=48672&mId=491094
+McLennan Grab 'N' Go,?id=1809&cId=48672&mId=491171
+Ned's Cafe,?id=1809&cId=48672&mId=506466
+New College Dining Hall,?id=1809&cId=48672&mId=490963
+Not Just Greens,?id=1809&cId=48672&mId=491050
+OISE Café,?id=1809&cId=48672&mId=490945
+Pasta Pappardelle Robarts,?id=1809&cId=48672&mId=491055
+Ramen Ya!,?id=1809&cId=48672&mId=491112
+Robarts Cafeteria,?id=1809&cId=48672&mId=490912
+Second Cup Kiosk,?id=1809&cId=48672&mId=490987
+Second Cup Koffler,?id=1809&cId=48672&mId=491011
+Second Cup Pharmacy,?id=1809&cId=48672&mId=490971
+Second Cup Rotman,?id=1809&cId=48672&mId=490995
+Second Cup Sid Smith,?id=1809&cId=48672&mId=490979
+Second Cup Woodsworth,?id=1809&cId=48672&mId=491003
+Sid Smith Cafeteria,?id=1809&cId=48672&mId=490900
+Starbucks Medical Sciences Building,?id=1809&cId=48672&mId=491120
+Starbucks Robarts,?id=1809&cId=48672&mId=491134
+Stone Oven Pizzeria Medical Sciences Building,?id=1809&cId=48672&mId=491162
+Stone Oven Pizzeria Robarts,?id=1809&cId=48672&mId=491165
+The Cube,?id=1809&cId=48672&mId=490923
+The Exchange Café,?id=1809&cId=48672&mId=491084
+The Green Beet,?id=1809&cId=48672&mId=491065
+Tim Hortons Medical Sciences Building,?id=1809&cId=48672&mId=491140
+Tim Hortons Sid Smith,?id=1809&cId=48672&mId=491018
+Tortillas Robarts,?id=1809&cId=48672&mId=491044
+Tortillas Sid Smith,?id=1809&cId=48672&mId=491036
+VEDA Multi-Faith Centre,?id=1809&cId=48672&mId=491028
+VEDA Sandford Fleming,?id=1809&cId=48672&mId=490934
