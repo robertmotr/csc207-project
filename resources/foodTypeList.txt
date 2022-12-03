@@ -1,0 +1,15 @@
+Beverages,?id=1809&cId=48669
+Flexible Dollars Accepted,?id=1809&cId=48661
+Gluten Free,?id=1809&cId=48662
+Green Bin,?id=1809&cId=48663
+Halal Entrees Available,?id=1809&cId=48664
+Kosher Food Available,?id=1809&cId=48675
+Light Meals,?id=1809&cId=48665
+Local Sustainable Certified,?id=1809&cId=48674
+Lug a Mug & Save $0.25,?id=1809&cId=48666
+Microwave,?id=1809&cId=48671
+Open During Summer,?id=1809&cId=48673
+Reusable Eco-Tray,?id=1809&cId=48667
+Snacks,?id=1809&cId=48668
+Vegan Foods,?id=1809&cId=48670
+Vegetarian Food,?id=1809&cId=48672
