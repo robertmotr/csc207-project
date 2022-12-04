@@ -1,4 +1,9 @@
-package Map; /**
+package Map;
+
+import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.javascript.object.*;
+
+/**
  * A static map of UTSG campus
  *
  * Reference from:
@@ -11,11 +16,27 @@ package Map; /**
 public class GoogleMapsGui {
     private static GoogleMapsGui instance = null;
 
+    private GoogleMap map;
+    private GoogleMapView mapView;
+    private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
+
+    private GoogleMapsGui(GoogleMapView view) {
+        view.setKey(apiKey);
+        this.mapView = view;
+    }
+
     private GoogleMapsGui() {}
 
     public static GoogleMapsGui getInstance() {
         if(instance == null) {
-            instance = new GoogleMapsGui();
+            throw new RuntimeException("Singleton must be initialized before getting instance.");
+        }
+        return instance;
+    }
+
+    public static GoogleMapsGui initialize(GoogleMapView view) {
+        if(instance == null) {
+            instance = new GoogleMapsGui(view);
         }
         return instance;
     }

@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import com.dlsc.gmapsfx.GoogleMapView?>
 <GridPane fx:id="guiPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="1080.0" minWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Map.Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="NEVER" maxWidth="1161.6" minWidth="1161.6" prefWidth="1161.6" />
@@ -60,7 +61,7 @@
       </VBox>
       <AnchorPane fx:id="mapPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="998.4" prefWidth="1161.6" GridPane.rowIndex="1">
          <children>
-            <ImageView fx:id="mapImage" fitHeight="998.4" fitWidth="1161.6" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-21.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="21.0" />
+             <GoogleMapView fx:id="mapView" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
       <VBox alignment="CENTER" GridPane.columnIndex="1">
