@@ -97,7 +97,7 @@ public class GoogleMapsGui {
         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
         infoWindowOptions.content("<h2>University of Toronto</h2>"
                 + "Welcome to the interactive map<br>"
-                + "Other stuff here ig idk");
+                + "Feel free to explore");
 
         InfoWindow window = new InfoWindow(infoWindowOptions);
         window.open(map, main);
