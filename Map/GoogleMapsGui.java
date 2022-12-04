@@ -1,10 +1,5 @@
-package Map;
-
-import com.dlsc.gmapsfx.GoogleMapView;
-import com.dlsc.gmapsfx.javascript.object.*;
-
-/**
- * A static map of UTSG campus, implements Singleton design pattern
+package Map; /**
+ * A static map of UTSG campus
  *
  * Reference from:
  * https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
@@ -15,28 +10,16 @@ import com.dlsc.gmapsfx.javascript.object.*;
 
 public class GoogleMapsGui {
     private static GoogleMapsGui instance = null;
-    private GoogleMap map;
-    private GoogleMapView mapView;
-    private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
 
-    private GoogleMapsGui(GoogleMapView view) {
-        view.setKey(apiKey);
-        this.mapView = view;
-    }
-
-    public static GoogleMapsGui initialize(GoogleMapView view) {
-        if(instance == null) {
-            instance = new GoogleMapsGui(view);
-        }
-        return instance;
-    }
+    private GoogleMapsGui() {}
 
     public static GoogleMapsGui getInstance() {
         if(instance == null) {
-            throw new RuntimeException("GoogleMapsGui singleton must be initialized first before getting a Singleton instance.");
+            instance = new GoogleMapsGui();
         }
         return instance;
     }
+
 
     public GoogleMapView getMapView() {
         return mapView;
