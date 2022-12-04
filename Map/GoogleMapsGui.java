@@ -43,31 +43,6 @@ public class GoogleMapsGui {
     }
 
     public void onInitialized() {
-/*        LatLong testPosition = new LatLong(43.66284509183421, -79.39576369024316);
-        MapOptions mapOptions = new MapOptions();
-        mapOptions.center(testPosition)
-                .mapType(MapTypeIdEnum.ROADMAP)
-                .overviewMapControl(false)
-                .panControl(false)
-                .rotateControl(false)
-                .scaleControl(false)
-                .streetViewControl(false)
-                .zoom(15)
-                .zoomControl(true);
-        this.map = mapView.createMap(mapOptions);
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        Marker testMarker = new Marker(markerOptions);
-
-        markerOptions.position(testPosition);
-        this.map.addMarker(testMarker);
-
-        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-        infoWindowOptions.content("<h2>UTSG Interactive Map</h2>"
-                + "Put stuff here ig?? i dunno<br>"
-                + "this looks cool tho");
-        InfoWindow window = new InfoWindow(infoWindowOptions);
-        window.open(map, testMarker);*/
 
         LatLong centerLocation = new LatLong(43.66284509183421, -79.39576369024316);
 
