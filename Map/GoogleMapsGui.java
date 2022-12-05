@@ -5,6 +5,8 @@ import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 
+import java.util.ArrayList;
+import java.util.Stack;
 /**
  * A static map of UTSG campus
  *
@@ -18,12 +20,15 @@ import com.dlsc.gmapsfx.javascript.object.*;
 public class GoogleMapsGui {
     private static GoogleMapsGui instance = null;
 
+    private Stack<Position> points;
+
     private GoogleMap map;
     private GoogleMapView mapView;
     private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
 
     private GoogleMapsGui(GoogleMapView view) {
         view.setKey(apiKey);
+        points = new Stack<>();
         this.mapView = view;
     }
 
@@ -68,26 +73,30 @@ public class GoogleMapsGui {
         //Add markers to the map
         MarkerOptions markerOptions1 = new MarkerOptions();
         markerOptions1.position(centerLocation);
-
         Marker main = new Marker(markerOptions1);
-
+        main.setVisible(false);
+        main.setAnimation(Animation.DROP);
         map.addMarker(main);
 
         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
         infoWindowOptions.content("<h2>University of Toronto</h2>"
-                + "Welcome to the interactive map<br>"
-                + "Feel free to explore");
+                + "Welcome to the interactive map.<br>"
+                + "Feel free to explore!");
 
         InfoWindow window = new InfoWindow(infoWindowOptions);
         window.open(map, main);
 
 
         map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
-            LatLong latLong = event.getLatLong();
-            System.out.println("Latitude: " + latLong.getLatitude());
-            System.out.println("Longitude: " + latLong.getLongitude());
+            if(this.points.size() >= 2) {
+                Position b = points.pop(); Position a = points.pop();
+                a.destroyMarker();
+                this.points.add(b); this.points.add(new Position(event.getLatLong(), map));
+            }
+            else {
+                points.add(new Position(event.getLatLong(), map));
+            }
         });
-
     }
 
     public GoogleMap getMap() {

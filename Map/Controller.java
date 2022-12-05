@@ -36,7 +36,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
     private Button searchBtn;
 
     @FXML
-    private Text sidebar;
+    private Label sidebar;
 
     @FXML
     private TreeView filterSearch;
@@ -74,9 +74,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
                 try {
                     link = searchFile("resources" + File.separator + "buildingList.txt", searchBar.getText());
                     String display = buildingInfo.specPlace(link);
-                    System.out.println(display);
-                    sidebar = new Text(display);
-                    sidebar.wrappingWidthProperty().set(345);
+                    sidebar.setText(display);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
