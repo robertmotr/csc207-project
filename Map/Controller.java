@@ -1,5 +1,7 @@
 package Map;
 
+import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -18,19 +20,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Controller implements Initializable {
+public class Controller implements Initializable, MapComponentInitializedListener {
 
     @FXML
-    private ImageView mapImage;
+    private GoogleMapView mapView;
 
-    @FXML
-    private AnchorPane mapPane;
-
-    @FXML
-    private GridPane guiPane;
-
-    @FXML
-    private VBox boxStuff;
+    private GoogleMapsGui GoogleMapsInstance;
 
     private GoogleMapsGui instance;
 
@@ -57,11 +52,9 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        instance = GoogleMapsGui.getInstance();
-        mapImage.setManaged(false);
-        mapImage.fitWidthProperty().bind(mapPane.widthProperty());
-        mapImage.fitHeightProperty().bind(mapPane.heightProperty());
-        mapImage.setPreserveRatio(true);
+        GoogleMapsInstance = GoogleMapsGui.initialize(mapView);
+        this.mapView = GoogleMapsInstance.getMapView();
+        this.mapView.addMapInitializedListener(this);
 
 
         //Initiate infos
@@ -70,10 +63,6 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        File file = new File("resources/webmap.png");
-        Image image = new Image(file.toURI().toString());
-        mapImage.setImage(image);
 
         //Search Button
         searchBtn.setOnAction(e -> {
@@ -124,10 +113,10 @@ public class Controller implements Initializable {
         return null;
     }
 
-
-
-
-
+    @Override
+    public void mapInitialized() {
+        GoogleMapsInstance.onInitialized();
+    }
 
 
 }
