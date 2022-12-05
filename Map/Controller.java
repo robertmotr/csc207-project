@@ -1,5 +1,7 @@
 package Map;
 
+import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -17,20 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class Controller implements Initializable {
-
-    @FXML
-    private ImageView mapImage;
+public class Controller implements Initializable, MapComponentInitializedListener {
 
     @FXML
-    private AnchorPane mapPane;
+    private GoogleMapView mapView;
 
-    @FXML
-    private GridPane guiPane;
-
-    @FXML
-    private VBox boxStuff;
+    private GoogleMapsGui GoogleMapsInstance;
 
     private GoogleMapsGui instance;
 
@@ -41,7 +35,7 @@ public class Controller implements Initializable {
     private Button searchBtn;
 
     @FXML
-    private Text sidebar;
+    private Label sidebar;
 
     @FXML
     private TreeView filterSearch;
@@ -57,11 +51,10 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        instance = GoogleMapsGui.getInstance();
-        mapImage.setManaged(false);
-        mapImage.fitWidthProperty().bind(mapPane.widthProperty());
-        mapImage.fitHeightProperty().bind(mapPane.heightProperty());
-        mapImage.setPreserveRatio(true);
+        GoogleMapsInstance = GoogleMapsGui.initialize(mapView);
+        this.instance = GoogleMapsInstance;
+        this.mapView = GoogleMapsInstance.getMapView();
+        this.mapView.addMapInitializedListener(this);
 
 
         //Initiate infos
@@ -71,10 +64,6 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-        File file = new File("resources/webmap.png");
-        Image image = new Image(file.toURI().toString());
-        mapImage.setImage(image);
-
         //Search Button
         searchBtn.setOnAction(e -> {
             //if filter not selected, assume its searching for building
@@ -83,9 +72,11 @@ public class Controller implements Initializable {
                 try {
                     link = searchFile("./resources/buildingList.txt", searchBar.getText());
                     String display = this.buildingInfo.specPlace(link);
+                    link = searchFile("resources" + File.separator + "buildingList.txt", searchBar.getText());
+                    String display = buildingInfo.specPlace(link);
                     System.out.println(display);
-                    sidebar = new Text(display);
-                    sidebar.wrappingWidthProperty().set(345);
+                    sidebar.setText(display + "\n");
+                    // sidebar.wrappingWidthProperty().set(345);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -124,10 +115,10 @@ public class Controller implements Initializable {
         return null;
     }
 
-
-
-
-
+    @Override
+    public void mapInitialized() {
+        GoogleMapsInstance.onInitialized();
+    }
 
 
 }
