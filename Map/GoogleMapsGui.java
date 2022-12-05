@@ -5,6 +5,8 @@ import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 
+import java.util.ArrayList;
+
 /**
  * A static map of UTSG campus
  *
@@ -16,6 +18,7 @@ import com.dlsc.gmapsfx.javascript.object.*;
  */
 
 public class GoogleMapsGui {
+
     private static GoogleMapsGui instance = null;
 
     private GoogleMap map;
@@ -75,8 +78,8 @@ public class GoogleMapsGui {
 
         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
         infoWindowOptions.content("<h2>University of Toronto</h2>"
-                + "Welcome to the interactive map<br>"
-                + "Feel free to explore");
+                + "Welcome to the interactive map.<br>"
+                + "Feel free to explore!");
 
         InfoWindow window = new InfoWindow(infoWindowOptions);
         window.open(map, main);

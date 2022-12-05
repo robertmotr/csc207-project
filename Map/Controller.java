@@ -70,13 +70,10 @@ public class Controller implements Initializable, MapComponentInitializedListene
             if(!searchBar.getText().equals(null)){
                 String link = null;
                 try {
-                    link = searchFile("./resources/buildingList.txt", searchBar.getText());
-                    String display = this.buildingInfo.specPlace(link);
                     link = searchFile("resources" + File.separator + "buildingList.txt", searchBar.getText());
                     String display = buildingInfo.specPlace(link);
                     System.out.println(display);
                     sidebar.setText(display + "\n");
-                    // sidebar.wrappingWidthProperty().set(345);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
