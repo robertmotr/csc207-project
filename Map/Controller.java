@@ -50,12 +50,11 @@ public class Controller implements Initializable {
     @FXML
     private Text sidebar;
 
-
-
-    //infos
-    PlaceInfo studyInfo;
-    PlaceInfo foodInfo;
     PlaceInfo buildingInfo;
+    PlaceInfo studyplaceInfo;
+    PlaceInfo foodplaceInfo;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,13 +68,11 @@ public class Controller implements Initializable {
 
         //Initiate infos
         try {
-            Factory factory = new Factory();
-            this.studyInfo = factory.createInfo("study");
-            this.foodInfo = factory.createInfo("food");
-            this.buildingInfo = factory.createInfo("building");
+            initInfos();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
         File file = new File("resources/webmap.png");
         Image image = new Image(file.toURI().toString());
@@ -88,7 +85,7 @@ public class Controller implements Initializable {
                 String link = null;
                 try {
                     link = searchFile("./resources/buildingList.txt", searchBar.getText());
-                    String display = buildingInfo.specPlace(link);
+                    String display = this.buildingInfo.specPlace(link);
                     System.out.println(display);
                     sidebar = new Text(display);
                     sidebar.wrappingWidthProperty().set(345);
@@ -98,6 +95,17 @@ public class Controller implements Initializable {
             }
 
         });
+    }
+
+    private void initInfos() throws IOException {
+        this.buildingInfo = new BuildingInfo();
+        this.studyplaceInfo = new StudyInfo();
+        this.foodplaceInfo = new FoodInfo();
+
+        this.buildingInfo.getTotlist();
+        this.studyplaceInfo.getTotlist();
+        this.foodplaceInfo.getTotlist();
+
     }
 
     public String searchFile(String filepath, String place) throws IOException {
