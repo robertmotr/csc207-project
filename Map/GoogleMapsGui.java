@@ -1,4 +1,9 @@
-package Map; /**
+package Map;
+
+import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.javascript.object.*;
+
+/**
  * A static map of UTSG campus
  *
  * Reference from:
@@ -11,13 +16,78 @@ package Map; /**
 public class GoogleMapsGui {
     private static GoogleMapsGui instance = null;
 
+    private GoogleMap map;
+    private GoogleMapView mapView;
+    private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
+
+    private GoogleMapsGui(GoogleMapView view) {
+        view.setKey(apiKey);
+        this.mapView = view;
+    }
+
     private GoogleMapsGui() {}
 
     public static GoogleMapsGui getInstance() {
         if(instance == null) {
-            instance = new GoogleMapsGui();
+            throw new RuntimeException("Singleton must be initialized before getting instance.");
         }
         return instance;
+    }
+
+    public static GoogleMapsGui initialize(GoogleMapView view) {
+        if(instance == null) {
+            instance = new GoogleMapsGui(view);
+        }
+        return instance;
+    }
+
+
+    public GoogleMapView getMapView() {
+        return mapView;
+    }
+
+    public void onInitialized() {
+
+        LatLong centerLocation = new LatLong(43.66284509183421, -79.39576369024316);
+
+        //Set the initial properties of the map.
+        MapOptions mapOptions = new MapOptions();
+
+        mapOptions.center(centerLocation)
+                .mapType(MapTypeIdEnum.SATELLITE)
+                .overviewMapControl(false)
+                .panControl(false)
+                .rotateControl(false)
+                .scaleControl(false)
+                .streetViewControl(false)
+                .zoomControl(false)
+                .zoom(20);
+
+        map = mapView.createMap(mapOptions);
+
+        //Add markers to the map
+        MarkerOptions markerOptions1 = new MarkerOptions();
+        markerOptions1.position(centerLocation);
+
+        Marker main = new Marker(markerOptions1);
+
+        map.addMarker(main);
+
+        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+        infoWindowOptions.content("<h2>University of Toronto</h2>"
+                + "Welcome to the interactive map<br>"
+                + "Feel free to explore");
+
+        InfoWindow window = new InfoWindow(infoWindowOptions);
+        window.open(map, main);
+    }
+
+    public GoogleMap getMap() {
+        return map;
+    }
+
+    public void setMap(GoogleMap map) {
+        this.map = map;
     }
 
 }
