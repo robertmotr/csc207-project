@@ -2,7 +2,10 @@ package Map;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -52,7 +55,16 @@ public class Controller implements Initializable {
     PlaceInfo studyplaceInfo;
     PlaceInfo foodplaceInfo;
 
+    private void initInfos() throws IOException {
+        this.buildingInfo = new BuildingInfo();
+        this.studyplaceInfo = new StudyInfo();
+        this.foodplaceInfo = new FoodInfo();
 
+        this.buildingInfo.getTotlist();
+        this.studyplaceInfo.getTotlist();
+        this.foodplaceInfo.getTotlist();
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,7 +83,7 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-        File file = new File("resources/webmap.png");
+        File file = new File("C:\\Users\\R_asl\\CSC207\\csc207-project\\resources\\webmap.png");
         Image image = new Image(file.toURI().toString());
         mapImage.setImage(image);
 
@@ -81,7 +93,7 @@ public class Controller implements Initializable {
             if(!searchBar.getText().equals(null)){
                 String link = null;
                 try {
-                    link = searchFile("./resources/buildingList.txt", searchBar.getText());
+                    link = searchFile("C:\\Users\\R_asl\\CSC207\\csc207-project\\resources\\buildingList.txt", searchBar.getText());
                     String display = this.buildingInfo.specPlace(link);
                     System.out.println(display);
                     sidebar = new Text(display);
@@ -90,21 +102,19 @@ public class Controller implements Initializable {
                     throw new RuntimeException(ex);
                 }
             }
-            MenuButton menuButton = new MenuButton("Don't touch this");
-            menuButton.getItems().addAll(new MenuItem("Really"), new MenuItem("Do not"));
         });
+
+        TreeItem<String>  rootItem = new TreeItem<>("Places");
+        TreeItem<String> studyItem = new TreeItem<>("Study Places");
+        TreeItem<String> foodItem = new TreeItem<>("Food Places");
+        TreeItem<String> buildingItem = new TreeItem<>("Building Places");
+        TreeItem<String> allFoodItem = new TreeItem<>("All Places");
+        foodItem.getChildren().add(allFoodItem);
+
+        rootItem.getChildren().addAll(studyItem, foodItem, buildingItem);
+        filterSearch.setRoot(rootItem);
     }
 
-    private void initInfos() throws IOException {
-        this.buildingInfo = new BuildingInfo();
-        this.studyplaceInfo = new StudyInfo();
-        this.foodplaceInfo = new FoodInfo();
-
-        this.buildingInfo.getTotlist();
-        this.studyplaceInfo.getTotlist();
-        this.foodplaceInfo.getTotlist();
-
-    }
 
     public String searchFile(String filepath, String place) throws IOException {
         File file = new File(filepath);
