@@ -1,13 +1,29 @@
 package Map;
 
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudyInfo extends PlaceInfo {
-    String studyList;
-    public StudyInfo() throws IOException {
-        super("?id=1809&cId=48697");
-        this.studyList = getList(this.url);
-//        saveStudyListFile();
+
+    String STUDYURL = "?id=1809&cId=48697";
+
+    ArrayList<Place> studyLIST = new ArrayList<>();
+
+    private void updateList(List<HtmlAnchor> l){
+        for(HtmlAnchor build : l){
+            String name = build.asNormalizedText();
+            String url = build.getHrefAttribute();
+            this.studyLIST.add(Factory.createPlace(name, url));
+        }
+    }
+
+    @Override
+    public void getTotlist() throws IOException {
+        List<HtmlAnchor> stu = getAnchorsofNamesURL(STUDYURL);
+        updateList(stu);
     }
 
     public void saveStudyListFile() throws IOException {
@@ -15,6 +31,6 @@ public class StudyInfo extends PlaceInfo {
         String filename = "studySpacesList.txt";
         File file = new File("./resources/"+filename);
 
-        saveListFile(file, this.studyList);
+        saveListFile(file, getList(STUDYURL));
     }
 }
