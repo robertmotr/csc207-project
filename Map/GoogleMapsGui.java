@@ -25,8 +25,6 @@ public class GoogleMapsGui {
         this.mapView = view;
     }
 
-    private GoogleMapsGui() {}
-
     public static GoogleMapsGui getInstance() {
         if(instance == null) {
             throw new RuntimeException("Singleton must be initialized before getting instance.");

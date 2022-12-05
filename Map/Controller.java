@@ -51,6 +51,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         GoogleMapsInstance = GoogleMapsGui.initialize(mapView);
+        this.instance = GoogleMapsInstance;
         this.mapView = GoogleMapsInstance.getMapView();
         this.mapView.addMapInitializedListener(this);
 
@@ -71,7 +72,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
             if(!searchBar.getText().equals(null)){
                 String link = null;
                 try {
-                    link = searchFile("C:\\Users\\R_asl\\CSC207\\csc207-project\\resources\\buildingList.txt", searchBar.getText());
+                    link = searchFile("resources" + File.separator + "buildingList.txt", searchBar.getText());
                     String display = buildingInfo.specPlace(link);
                     System.out.println(display);
                     sidebar = new Text(display);
