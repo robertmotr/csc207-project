@@ -1,6 +1,8 @@
 package Map;
 
 import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
+import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 
 /**
@@ -78,6 +80,14 @@ public class GoogleMapsGui {
 
         InfoWindow window = new InfoWindow(infoWindowOptions);
         window.open(map, main);
+
+
+        map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
+            LatLong latLong = event.getLatLong();
+            System.out.println("Latitude: " + latLong.getLatitude());
+            System.out.println("Longitude: " + latLong.getLongitude());
+        });
+
     }
 
     public GoogleMap getMap() {
