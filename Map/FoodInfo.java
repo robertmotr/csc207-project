@@ -1,6 +1,7 @@
 package Map;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class FoodInfo extends PlaceInfo{
     String foodTypeList;
