@@ -91,6 +91,9 @@ public class Controller implements Initializable, MapComponentInitializedListene
             throw new RuntimeException(e);
         }
 
+        //Display tree view
+        displayTreeView();
+
         //Search Button
         searchBtn.setOnAction(e -> {
             //if filter not selected, assume its searching for building
@@ -110,6 +113,52 @@ public class Controller implements Initializable, MapComponentInitializedListene
             }
         });
 
+        //Turn on multiple select mode
+        filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //Get slection model1
+        MultipleSelectionModel<TreeItem<String>> selected = filterSearch.getSelectionModel();
+
+        //list.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+        //            selected.setItems(list.getSelectionModel().getSelectedItems());
+        //        });
+
+        //ChangeListener<TreeItem<String>> multiSelection = new ChangeListener<TreeItem<String>>(){
+        //        @Override
+        //        public void onChanged(  ObservableValue<? extends TreeItem<String>> changed){
+        //            prevVal = oldVal;
+        //                currVal = newVal;
+        //
+        //                // Display the selection
+        //                if (prevVal == null){
+        //                    sidebar.setText("Your starting destination is: " + currVal.getValue());
+        //                }
+        //                else{
+        //                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
+        //                }
+        //            }
+        //        }
+        //     };
+
+//        filterSearch.getSelectionModel().getSelectedItems().addListener(multiSelection);
+        selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
+            public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
+                                TreeItem<String> newVal) {
+                prevVal = oldVal;
+                currVal = newVal;
+
+                // Display the selection
+                if (prevVal == null){
+                    sidebar.setText("Your starting destination is: " + currVal.getValue());
+                }
+                else{
+                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
+                }
+            }
+        });
+    }
+
+    public void displayTreeView(){
         TreeItem<String>  rootItem = new TreeItem<>("Places");
         TreeItem<String> studyItem = new TreeItem<>("Study Places");
         for (Place place: this.studyplaceInfo){
@@ -170,29 +219,6 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
         rootItem.getChildren().addAll(studyItem, foodItem, buildingItem);
         filterSearch.setRoot(rootItem);
-
-        //Turn on multiple select mode
-        filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        //Get slection model
-        MultipleSelectionModel<TreeItem<String>> selected = filterSearch.getSelectionModel();
-
-        selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
-            public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
-                                TreeItem<String> newVal) {
-                prevVal = oldVal;
-                currVal = newVal;
-
-                // Display the selection
-                if (prevVal == null){
-                    sidebar.setText("Your starting destination is: " + currVal.getValue());
-                }
-                else{
-                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
-                }
-            }
-        });
-
     }
 
 
