@@ -8,6 +8,9 @@ import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.DirectionsPane;
 import com.dlsc.gmapsfx.javascript.object.GoogleMap;
 import com.dlsc.gmapsfx.service.directions.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -17,12 +20,10 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import static Map.PlaceInfo.getAnchorsofNamesURL;
 import static Map.PlaceInfo.name;
-import java.util.Stack;
 
 public class Controller implements Initializable, MapComponentInitializedListener {
 
@@ -60,6 +61,10 @@ public class Controller implements Initializable, MapComponentInitializedListene
     PlaceInfo initFood;
     PlaceInfo initStudy;
 
+    //Selection choice
+    TreeItem<String> prevVal;
+    TreeItem<String> currVal;
+
     private void initInfos() throws IOException {
         initBuild = new BuildingInfo();
         initFood = new StudyInfo();
@@ -89,7 +94,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         //Search Button
         searchBtn.setOnAction(e -> {
             //if filter not selected, assume its searching for building
-            if(!searchBar.getText().equals(null)){
+            if(searchBar.getText() != null){
                 String link = null;
                 String display = "Invalid Place";
                 try {
@@ -165,6 +170,29 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
         rootItem.getChildren().addAll(studyItem, foodItem, buildingItem);
         filterSearch.setRoot(rootItem);
+
+        //Turn on multiple select mode
+        filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //Get slection model
+        MultipleSelectionModel<TreeItem<String>> selected = filterSearch.getSelectionModel();
+
+        selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
+            public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
+                                TreeItem<String> newVal) {
+                prevVal = oldVal;
+                currVal = newVal;
+
+                // Display the selection
+                if (prevVal == null){
+                    sidebar.setText("Your starting destination is: " + currVal.getValue());
+                }
+                else{
+                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
+                }
+            }
+        });
+
     }
 
 
