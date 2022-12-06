@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -23,11 +24,6 @@ import java.nio.charset.Charset;
 public class GoogleMapsApi {
 
     private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
-
-    public static GoogleMapsApi initialize() {
-        return new GoogleMapsApi();
-    }
-
 
     /**
      * Returns written instructions how to get from origin to destination via Google Maps api.
@@ -80,6 +76,47 @@ public class GoogleMapsApi {
         String string = "<div style=\\\"font-size:0.9em\\\">";
         output = output.replaceAll(string, " and your ");
         return output.replaceAll("<.*?>", "");
+    }
+
+
+
+    /**
+     * Returns a lat and long for given address, if none is found returns null
+     * Try not to include special characters or extra details such as apartment numbers in address to minimize null results.
+     * and replace spaces with "+".
+     */
+    public static LatLong getLatLongFromAddress(String address){
+        String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
+        URL url = null;
+        try {
+            url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + apiKey);
+        } catch (MalformedURLException e) {
+            return null;
+        }
+
+        JSONObject jsonObject = null;
+        JSONArray jsonArray = null;
+        try {
+            String text = IOUtils.toString(url, Charset.forName("UTF-8"));
+            jsonObject = new JSONObject(text);
+        } catch (IOException e) {
+            return null;
+        }
+        if(!(jsonObject.get("status").equals("OK"))){
+            return null;
+        }
+        jsonArray = jsonObject.getJSONArray("results");
+        jsonObject = jsonArray.getJSONObject(1);
+        jsonObject = jsonObject.getJSONObject("geometry");
+        jsonObject = jsonObject.getJSONObject("location");
+
+        BigDecimal bigLat = (BigDecimal) jsonObject.get("lat");
+        double smallLat = bigLat.doubleValue();
+
+        BigDecimal bigLong = (BigDecimal) jsonObject.get("lng");
+        double smallLong = bigLong.doubleValue();
+
+        return new LatLong(smallLat, smallLong);
 
     }
 }

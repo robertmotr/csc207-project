@@ -235,7 +235,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         GoogleMapsInstance.onInitialized();
         this.points = new Stack<>();
         GoogleMap map = GoogleMapsInstance.getMap();
-
+        
         map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
             GoogleMapsInstance.onMouseClick(event);
         });
