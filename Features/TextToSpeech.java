@@ -1,3 +1,5 @@
+package Features;
+
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
@@ -18,8 +20,5 @@ public class TextToSpeech {
         voice.setPitch(100);
         voice.setVolume(5);
         voice.speak(words);
-    }
-    public static void main(String[] args){
-        TextToSpeech.speak("I would walk five hundred miles and I would walk five hundred more");
     }
 }
