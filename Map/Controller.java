@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 
 
-public class Controller implements Initializable, MapComponentInitializedListener, DirectionsServiceCallback {
+public class Controller implements Initializable, MapComponentInitializedListener {
 
     private DirectionsService directionsService;
     private DirectionsPane directionsPane;
@@ -112,13 +112,6 @@ public class Controller implements Initializable, MapComponentInitializedListene
         return null;
     }
 
-
-    // Currently doesn't work, might work in the future, but very buggy
-    private void renderDirections(Position a, Position b) {
-        DirectionsRequest request = new DirectionsRequest(a.getAddress(), b.getAddress(), TravelModes.WALKING, false);
-        directionsService.getRoute(request, this, new DirectionsRenderer(true, mapView.getMap(), directionsPane));
-    }
-
     @Override
     public void mapInitialized() {
         GoogleMapsInstance.onInitialized();
@@ -149,8 +142,4 @@ public class Controller implements Initializable, MapComponentInitializedListene
             }
         });
     }
-
-
-    @Override
-    public void directionsReceived(DirectionsResult results, DirectionStatus status) {}
 }
