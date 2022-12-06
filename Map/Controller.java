@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static Map.PlaceInfo.getAnchorsofNamesURL;
 import static Map.PlaceInfo.name;
@@ -119,31 +120,11 @@ public class Controller implements Initializable, MapComponentInitializedListene
         //Get slection model1
         MultipleSelectionModel<TreeItem<String>> selected = filterSearch.getSelectionModel();
 
-        //list.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-        //            selected.setItems(list.getSelectionModel().getSelectedItems());
-        //        });
-
-        //ChangeListener<TreeItem<String>> multiSelection = new ChangeListener<TreeItem<String>>(){
-        //        @Override
-        //        public void onChanged(  ObservableValue<? extends TreeItem<String>> changed){
-        //            prevVal = oldVal;
-        //                currVal = newVal;
-        //
-        //                // Display the selection
-        //                if (prevVal == null){
-        //                    sidebar.setText("Your starting destination is: " + currVal.getValue());
-        //                }
-        //                else{
-        //                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
-        //                }
-        //            }
-        //        }
-        //     };
-
-//        filterSearch.getSelectionModel().getSelectedItems().addListener(multiSelection);
+        
         selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
                                 TreeItem<String> newVal) {
+
                 prevVal = oldVal;
                 currVal = newVal;
 
