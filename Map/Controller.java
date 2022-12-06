@@ -151,4 +151,21 @@ public class Controller implements Initializable, MapComponentInitializedListene
             }
         });
     }
+
+    @FXML
+    private void onMenuBarClose() {
+        System.exit(0);
+    }
+
+    @FXML
+    private void onMenuBarAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Designed by WERM group for 2022 CSC207H5 final project @ UTM.\n" +
+                "This program is an interactive, dynamic map that allows users to find specific information about buildings at UTSG, find specific food spots,\n" +
+                "and get directions and distance between spots on the UTSG campus for walking. This project was made by Wardah, Emma, Robert and Michael. The GitHub link\n" +
+                "where the git repository can be found is shown below:\n" +
+                "github.com/robertmotr/csc207-project");
+        alert.setTitle("About:");
+        alert.setHeaderText("An informative note:");
+        alert.showAndWait();
+    }
 }
