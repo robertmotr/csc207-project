@@ -48,7 +48,6 @@ public class GoogleMapsApi {
         } catch (MalformedURLException e) {
             return "Error making URL in GoogleMapsAPI";
         }
-        System.out.println(url.toString());
 
         JSONObject jsonObject = null;
         try {

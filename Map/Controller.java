@@ -133,7 +133,30 @@ public class Controller implements Initializable, MapComponentInitializedListene
                     sidebar.setText("Your starting destination is: " + currVal.getValue());
                 }
                 else{
-                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
+                    try {
+                        sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
+                        if(!(prevVal.getChildren().contains("Places")) & !(currVal.getValue().contains("Places"))){
+                            String originInfo = PlaceInfo.specPlace(searchPlace(prevVal.getValue()));
+                            String destinationInfo = PlaceInfo.specPlace(searchPlace(currVal.getValue()));
+                            String destination = (destinationInfo.split("\n"))[1].replaceAll(" ", "+")+ "Toronto,+ON";
+                            String origin = (originInfo.split("\n"))[1].replaceAll(" ", "+") + "Toronto,+ON";
+
+                            if(GoogleMapsApi.getDirections(origin, destination,"walking").equals("No route found")){
+                                origin = prevVal.getValue().replaceAll(" ", "+") + "+University+Of+Toronto";
+                                destination = currVal.getValue().replaceAll(" ", "+") + "+University+Of+Toronto";
+                                System.out.println("first check failed");
+                            }
+                            sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue() + ". \n" +
+                                    "Directions: " + GoogleMapsApi.getDirections(origin, destination, "walking"));
+                            
+                            sidebar.setWrapText(true);
+                            sidebar.setPrefWidth(730);
+                            sidebar.setPrefHeight(500);
+                            sidebar.setMaxHeight(500);
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });
