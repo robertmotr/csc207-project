@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.dlsc.gmapsfx.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.dlsc.gmapsfx.GoogleMapView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -57,6 +63,7 @@
       </VBox>
       <VBox minWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
+            <TreeView fx:id="filterSearch" prefHeight="300.0" prefWidth="759.0" />
             <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
              <Label fx:id="sidebar" alignment="CENTER" prefHeight="257.0" prefWidth="732.0" textAlignment="CENTER">
                <font>
@@ -70,6 +77,7 @@
       </VBox>
       <AnchorPane fx:id="mapPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="998.4" prefWidth="1161.6" GridPane.rowIndex="1">
          <children>
+            <ImageView fx:id="mapImage" fitHeight="998.4" fitWidth="1161.6" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-21.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="21.0" />
              <GoogleMapView fx:id="mapView" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
@@ -80,7 +88,6 @@
                   <Font size="21.0" />
                </font>
             </Label>
-            <TreeView fx:id="filterSearch" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </children>

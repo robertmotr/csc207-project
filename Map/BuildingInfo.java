@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuildingInfo extends PlaceInfo {
-    static String TRINITY = "?id=1809&cId=48656";
-    static String UNIOFMICHAEL = "?id=1809&cId=48657";
-    static String VICTORIAUNI = "?id=1809&cId=48658";
-    static String OTHERCOLLE = "?id=1809&cId=48655";
-    static String BUILDINGWEBURL = "?id=1809&cId=48654";
+    String TRINITY = "?id=1809&cId=48656";
+    String UNIOFMICHAEL = "?id=1809&cId=48657";
+    String VICTORIAUNI = "?id=1809&cId=48658";
+    String OTHERCOLLE = "?id=1809&cId=48655";
+    String BUILDINGWEBURL = "?id=1809&cId=48654";
     ArrayList<Place> buildingLIST = new ArrayList<>();
     String tot = "";
 
@@ -29,7 +29,7 @@ public class BuildingInfo extends PlaceInfo {
     }
 
     @Override
-    public void getTotlist() throws IOException {
+    public ArrayList<Place> getTotlist() throws IOException {
         List<HtmlAnchor> trinity = getAnchorsofNamesURL(TRINITY);
         List<HtmlAnchor> micouni = getAnchorsofNamesURL(UNIOFMICHAEL);
         List<HtmlAnchor> vicuni = getAnchorsofNamesURL(VICTORIAUNI);
@@ -45,6 +45,8 @@ public class BuildingInfo extends PlaceInfo {
         updateList(othcol);
         //Get remaining building
         updateList(othbuil);
+
+        return this.buildingLIST;
     }
 
     public void saveBuildListFile() throws IOException {

@@ -1,29 +1,30 @@
 package Map;
 
 import com.dlsc.gmapsfx.GoogleMapView;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.DirectionsPane;
 import com.dlsc.gmapsfx.javascript.object.GoogleMap;
 import com.dlsc.gmapsfx.service.directions.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Stack;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static Map.PlaceInfo.getAnchorsofNamesURL;
+import static Map.PlaceInfo.name;
 
 public class Controller implements Initializable, MapComponentInitializedListener {
 
@@ -53,11 +54,28 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
 
     //infos
-    PlaceInfo buildingInfo;
-    PlaceInfo studyplaceInfo;
-    PlaceInfo foodplaceInfo;
+    ArrayList<Place> buildingInfo;
+    ArrayList<Place> studyplaceInfo;
+    ArrayList<Place> foodplaceInfo;
+    HashMap<String,String> foodTypeInfo;
+    PlaceInfo initBuild;
+    PlaceInfo initFood;
+    PlaceInfo initStudy;
 
+    //Selection choice
+    TreeItem<String> prevVal;
+    TreeItem<String> currVal;
 
+    private void initInfos() throws IOException {
+        initBuild = new BuildingInfo();
+        initFood = new StudyInfo();
+        initStudy = new FoodInfo();
+
+        this.buildingInfo = initBuild.getTotlist();
+        this.studyplaceInfo = initFood.getTotlist();
+        this.foodplaceInfo = initStudy.getTotlist();
+        this.foodTypeInfo = initFood.foodTypeLIST;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,50 +92,134 @@ public class Controller implements Initializable, MapComponentInitializedListene
             throw new RuntimeException(e);
         }
 
+        //Display tree view
+        displayTreeView();
+
         //Search Button
         searchBtn.setOnAction(e -> {
             //if filter not selected, assume its searching for building
-            if(!searchBar.getText().equals(null)){
+            if(searchBar.getText() != null){
                 String link = null;
+                String display = "Invalid Place";
                 try {
-                    link = searchFile("resources" + File.separator + "buildingList.txt", searchBar.getText());
-                    String display = buildingInfo.specPlace(link);
+                    link = searchPlace(searchBar.getText());
+                    if(link != null){
+                        display = PlaceInfo.specPlace(link);
+                        System.out.println(display);
+                    }
                     sidebar.setText(display);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
-            MenuButton menuButton = new MenuButton("Don't touch this");
-            menuButton.getItems().addAll(new MenuItem("Really"), new MenuItem("Do not"));
+        });
+
+        //Turn on multiple select mode
+        filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //Get slection model1
+        MultipleSelectionModel<TreeItem<String>> selected = filterSearch.getSelectionModel();
+
+        
+        selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
+            public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
+                                TreeItem<String> newVal) {
+
+                prevVal = oldVal;
+                currVal = newVal;
+
+                // Display the selection
+                if (prevVal == null){
+                    sidebar.setText("Your starting destination is: " + currVal.getValue());
+                }
+                else{
+                    sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
+                }
+            }
         });
     }
 
-    private void initInfos() throws IOException {
-        this.buildingInfo = new BuildingInfo();
-        this.studyplaceInfo = new StudyInfo();
-        this.foodplaceInfo = new FoodInfo();
+    public void displayTreeView(){
+        TreeItem<String>  rootItem = new TreeItem<>("Places");
+        TreeItem<String> studyItem = new TreeItem<>("Study Places");
+        for (Place place: this.studyplaceInfo){
+            studyItem.getChildren().add(new TreeItem<>(place.name));
+        }
+        TreeItem<String> foodItem = new TreeItem<>("Food Places");
+        TreeItem<String> buildingItem = new TreeItem<>("Building Places");
+        for (Place place: this.buildingInfo){
+            buildingItem.getChildren().add(new TreeItem<>(place.name));
+        }
+        TreeItem<String> allFoodItem = new TreeItem<>("All Places");
+        for (Place place: this.foodplaceInfo) {
+            allFoodItem.getChildren().add(new TreeItem<>(place.name));
+        }
+        TreeItem<String> halalItem = new TreeItem<>("Halal Places");
+        try {
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Halal Entrees Available"))){
+                halalItem.getChildren().add(new TreeItem<>(name(place)));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TreeItem<String> beverageItem = new TreeItem<>("Beverage Places");
+        try {
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Beverages"))){
+                beverageItem.getChildren().add(new TreeItem<>(name(place)));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TreeItem<String> kosherItem = new TreeItem<>("Kosher Places");
+        try {
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Kosher Food Available"))){
+                kosherItem.getChildren().add(new TreeItem<>(name(place)));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TreeItem<String> veganItem = new TreeItem<>("Vegan Places");
+        try {
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Vegan Foods"))){
+                veganItem.getChildren().add(new TreeItem<>(name(place)));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TreeItem<String> vegItem = new TreeItem<>("Vegetarian Places");
+        try {
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Vegetarian Food"))){
+                vegItem.getChildren().add(new TreeItem<>(name(place)));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        this.buildingInfo.getTotlist();
-        this.studyplaceInfo.getTotlist();
-        this.foodplaceInfo.getTotlist();
+        foodItem.getChildren().addAll(allFoodItem, halalItem, beverageItem,
+                kosherItem, vegItem, veganItem);
 
+        rootItem.getChildren().addAll(studyItem, foodItem, buildingItem);
+        filterSearch.setRoot(rootItem);
     }
 
-    public String searchFile(String filepath, String place) throws IOException {
-        File file = new File(filepath);
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line, name, link;
 
-        line = br.readLine();
-        while (line != null){
-            name = line.split(",")[0].toLowerCase();
-            link = line.split(",")[1];
-            if(name.equals(place.toLowerCase())){
-                return link;
+    public String searchPlace(String place) throws IOException {
+        String search = place.toLowerCase();
+        for(Place p : this.buildingInfo){
+            if(p.name.toLowerCase().equals(search)){
+                return p.url;
             }
-            line = br.readLine();
         }
-        br.close();
+        for(Place q : this.studyplaceInfo){
+            if(q.name.toLowerCase().equals(search)){
+                return q.url;
+            }
+        }
+        for(Place r : this.foodplaceInfo){
+            if(r.name.toLowerCase().equals(search)){
+                return r.url;
+            }
+        }
         return null;
     }
 
