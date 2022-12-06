@@ -1,6 +1,7 @@
 package Map;
 
 import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.javascript.object.LatLong;
 import okhttp3.*;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -79,11 +80,6 @@ public class GoogleMapsApi {
         String string = "<div style=\\\"font-size:0.9em\\\">";
         output = output.replaceAll(string, " and your ");
         return output.replaceAll("<.*?>", "");
-
-
-
-
-
 
     }
 }

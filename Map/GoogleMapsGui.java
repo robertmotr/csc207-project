@@ -2,12 +2,15 @@ package Map;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
-import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
-import com.dlsc.gmapsfx.service.directions.*;
-import javafx.geometry.Pos;
+import com.dlsc.gmapsfx.service.geocoding.GeocoderRequest;
+import com.dlsc.gmapsfx.service.geocoding.GeocoderStatus;
+import com.dlsc.gmapsfx.service.geocoding.GeocodingResult;
+import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
+import javafx.scene.control.Alert;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.Arrays;
 import java.util.Stack;
 /**
  * A dynamic map of UTSG campus
@@ -88,6 +91,40 @@ public class GoogleMapsGui {
 
         InfoWindow window = new InfoWindow(infoWindowOptions);
         window.open(map, main);
+    }
+
+    public void onMouseClick(GMapMouseEvent event) {
+        if(this.points.size() == 0) {
+            Position a = new Position(event.getLatLong(), map);
+            points.add(a);
+        }
+        else if(this.points.size() == 1) {
+            Position b = new Position(event.getLatLong(), map);
+            Position a = points.pop();
+            points.add(a); points.add(b);
+        }
+        else {
+            Position b = points.pop();
+            Position a = points.pop();
+
+            a.destroyMarker();
+            Position newPt = new Position(event.getLatLong(), map);
+            points.add(b); points.add(newPt);
+        }
+    }
+
+    public void clearMap() {
+        for(Position point : points) {
+            point.destroyMarker();
+        }
+        points.clear();
+    }
+
+    public void addMarker(LatLong coordinate) {
+        Position position = new Position(coordinate, map);
+    }
+
+    public void addMarker(String address) {
     }
 
     public GoogleMap getMap() {
