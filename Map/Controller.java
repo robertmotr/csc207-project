@@ -2,7 +2,7 @@ package Map;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
-import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -101,20 +101,20 @@ public class Controller implements Initializable, MapComponentInitializedListene
         TreeItem<String>  rootItem = new TreeItem<>("Places");
         TreeItem<String> studyItem = new TreeItem<>("Study Places");
         for (Place place: this.studyplaceInfo){
-            studyItem.getChildren().add(place);
+            studyItem.getChildren().add(new TreeItem<>(place.name));
         }
         TreeItem<String> foodItem = new TreeItem<>("Food Places");
         TreeItem<String> buildingItem = new TreeItem<>("Building Places");
         for (Place place: this.buildingInfo){
-            buildingItem.getChildren().add(place);
+            buildingItem.getChildren().add(new TreeItem<>(place.name));
         }
         TreeItem<String> allFoodItem = new TreeItem<>("All Places");
         for (Place place: this.foodplaceInfo) {
-            allFoodItem.getChildren().add(place);
+            allFoodItem.getChildren().add(new TreeItem<>(place.name));
         }
         TreeItem<String> halalItem = new TreeItem<>("Halal Places");
         try {
-            for (HtmlAnchor place: getAnchorsofNamesURL(foodTypeInfo.get("Halal Entrees Available"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Halal Entrees Available"))){
                 halalItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -122,7 +122,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> beverageItem = new TreeItem<>("Beverage Places");
         try {
-            for (HtmlAnchor place: getAnchorsofNamesURL(foodTypeInfo.get("Beverages"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Beverages"))){
                 beverageItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -130,7 +130,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> kosherItem = new TreeItem<>("Kosher Places");
         try {
-            for (HtmlAnchor place: getAnchorsofNamesURL(foodTypeInfo.get("Kosher Food Available"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Kosher Food Available"))){
                 kosherItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -138,7 +138,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> veganItem = new TreeItem<>("Vegan Places");
         try {
-            for (HtmlAnchor place: getAnchorsofNamesURL(foodTypeInfo.get("Vegan Foods"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Vegan Foods"))){
                 veganItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -146,7 +146,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> vegItem = new TreeItem<>("Vegetarian Places");
         try {
-            for (HtmlAnchor place: getAnchorsofNamesURL(foodTypeInfo.get("Vegetarian Foods"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Vegetarian Foods"))){
                 vegItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
