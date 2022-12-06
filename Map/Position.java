@@ -8,7 +8,7 @@ import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
 import java.util.Arrays;
 
 /**
-Class meant to abstract away details from a marker position from the GMapsFX library.
+Class meant to abstract away details from a marker position from the GMapsFX library. Facade design pattern.
  **/
 public class Position {
 
