@@ -13,4 +13,6 @@ public class Place {
     public String toString() {
         return this.name + "," + this.url + "\n";
     }
+
+    public String getName() {return this.name;}
 }

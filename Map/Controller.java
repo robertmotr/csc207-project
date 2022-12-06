@@ -5,20 +5,15 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
-import com.dlsc.gmapsfx.javascript.object.DirectionsPane;
 import com.dlsc.gmapsfx.javascript.object.GoogleMap;
-import com.dlsc.gmapsfx.service.directions.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.text.Text;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -91,12 +86,14 @@ public class Controller implements Initializable, MapComponentInitializedListene
         //Display tree view
         displayTreeView();
 
-/*        ArrayList<String> suggestions = new ArrayList<>();
-        suggestions.addAll((Collection<? extends String>) this.buildingInfo.stream().map(e -> e.name));
-        suggestions.addAll((Collection<? extends String>) this.foodplaceInfo.stream().map(e -> e.name));
-        suggestions.addAll((Collection<? extends String>) this.studyplaceInfo.stream().map(e -> e.name));
+        HashSet<String> suggestions = new HashSet<>();
+        suggestions.addAll(buildingInfo.stream().map(Place::getName).collect(Collectors.toSet()));
+        suggestions.addAll(foodplaceInfo.stream().map(Place::getName).collect(Collectors.toSet()));
+        suggestions.addAll(studyplaceInfo.stream().map(Place::getName).collect(Collectors.toSet()));
 
-        TextFields.bindAutoCompletion(searchBar, suggestions).setDelay(50);*/
+        AutoCompletionBinding<String> binding = TextFields.bindAutoCompletion(searchBar, suggestions);
+        binding.setPrefWidth(searchBar.getPrefWidth());
+        binding.setDelay(50);
 
         //Turn on multiple select mode
         filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -253,7 +250,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
                         GoogleMapsInstance.clearMap();
                         String[] split = display.split("\n");
                         String address = split[4];
-                        GoogleMapsInstance.addMarker(address);
+                        // GoogleMapsInstance.addMarker(address);
                     }
                     sidebar.setText(display);
                 } catch (IOException ex) {
