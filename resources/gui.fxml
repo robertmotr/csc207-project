@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.dlsc.gmapsfx.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.dlsc.gmapsfx.GoogleMapView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -15,6 +9,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -64,7 +59,6 @@
       <VBox minWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
             <TreeView fx:id="filterSearch" prefHeight="300.0" prefWidth="759.0" />
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" />
              <Label fx:id="sidebar" alignment="CENTER" prefHeight="257.0" prefWidth="732.0" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="19.0" />
