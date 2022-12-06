@@ -63,7 +63,6 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
         GoogleMapsInstance = GoogleMapsGui.initialize(mapView);
         this.instance = GoogleMapsInstance;
-        // this.mapView = GoogleMapsInstance.getMapView(); // TODO: danger?
         this.mapView.addMapInitializedListener(this);
 
 
