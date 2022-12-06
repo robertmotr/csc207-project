@@ -21,9 +21,10 @@ public class StudyInfo extends PlaceInfo {
     }
 
     @Override
-    public void getTotlist() throws IOException {
+    public ArrayList<Place> getTotlist() throws IOException {
         List<HtmlAnchor> stu = getAnchorsofNamesURL(STUDYURL);
         updateList(stu);
+        return this.studyLIST;
     }
 
     public void saveStudyListFile() throws IOException {

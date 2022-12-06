@@ -18,14 +18,17 @@ import com.gargoylesoftware.htmlunit.html.HtmlListItem;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 
 public abstract class PlaceInfo {
-    public static final String MAINURL = "https://myatlascms.com/map/accessible.php";
-    public static final String SPECPLACEINFOXPATH = "//ol[@role='list']/li[@role='listitem']";
-    public static final String LISTXPATH = "//li[@role='listitem']/a";
+    static final String MAINURL = "https://myatlascms.com/map/accessible.php";
+    static final String SPECPLACEINFOXPATH = "//ol[@role='list']/li[@role='listitem']";
+    static final String LISTXPATH = "//li[@role='listitem']/a";
+    public HashMap<String,String> foodTypeLIST;
 
     /**
      * Return a list of HTMLListItem from url and xPathExp
@@ -33,7 +36,7 @@ public abstract class PlaceInfo {
      * @return
      * @throws IOException
      */
-    public List<HtmlListItem> getLiforSpecPlace(String webUrl) throws IOException {
+    public static List<HtmlListItem> getLiforSpecPlace(String webUrl) throws IOException {
         //Build webclient
         WebClient client = new WebClient(BrowserVersion.CHROME);
 
@@ -57,7 +60,7 @@ public abstract class PlaceInfo {
      * @return
      * @throws IOException
      */
-    public List<HtmlAnchor> getAnchorsofNamesURL(String url) throws IOException {
+    public static List<HtmlAnchor> getAnchorsofNamesURL(String url) throws IOException {
         //WebURL
         String webUrl = MAINURL + url;
 
@@ -78,13 +81,23 @@ public abstract class PlaceInfo {
 
 
     /**
+     * Return exact name of place
+     * @param anchor
+     * @return
+     */
+    public static String name (HtmlAnchor anchor){
+        return anchor.asNormalizedText();
+    }
+
+
+    /**
      * Return a list of HTMLAnchor from url and xPathExp
      * @param url
      * @param xPathExp
      * @return
      * @throws IOException
      */
-    public List<HtmlAnchor> getAnchorsofNamesURL(String url, String xPathExp) throws IOException {
+    public static List<HtmlAnchor> getAnchorsofNamesURL(String url, String xPathExp) throws IOException {
         //WebURL
         String webUrl = MAINURL + url;
 
@@ -110,7 +123,7 @@ public abstract class PlaceInfo {
      * @return Place's general info
      * @throws IOException
      */
-    public String specPlace(String webUrl) throws IOException {
+    public static String specPlace(String webUrl) throws IOException {
         //Retrieve <li> elements
         List<HtmlListItem> anchors = getLiforSpecPlace(webUrl);
 
@@ -171,6 +184,6 @@ public abstract class PlaceInfo {
         writer.close();
     }
 
-    public abstract void getTotlist() throws IOException;
+    public abstract ArrayList<Place> getTotlist() throws IOException;
 
 }

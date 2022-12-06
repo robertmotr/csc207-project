@@ -1,7 +1,6 @@
 package Map;
 
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +8,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class FoodInfo extends PlaceInfo{
-    String FOODTYPEURL = "?id=1809&cId=48659";
-    String tot = "";
+    final String FOODTYPEURL = "?id=1809&cId=48659";
+    private String tot = "";
     ArrayList<Place> foodPlaceLIST = new ArrayList<>();
-    HashMap<String,String> foodTypeLIST = new HashMap<String,String>();
 
     private void updatetyList(List<HtmlAnchor> l){
         for(HtmlAnchor build : l){
@@ -31,17 +32,20 @@ public class FoodInfo extends PlaceInfo{
     }
 
     public void getfoodTypeLIST() throws IOException {
+        foodTypeLIST = new HashMap<String,String>();
         List<HtmlAnchor> foodty = getAnchorsofNamesURL(FOODTYPEURL);
         updatetyList(foodty);
     }
 
     @Override
-    public void getTotlist() throws IOException {
+    public ArrayList<Place> getTotlist() throws IOException {
         getfoodTypeLIST();
-        for(String type : this.foodTypeLIST.keySet()){
-            List<HtmlAnchor> placeoftype = getAnchorsofNamesURL(this.foodTypeLIST.get(type));
+        for(String type : foodTypeLIST.keySet()){
+            List<HtmlAnchor> placeoftype = getAnchorsofNamesURL(foodTypeLIST.get(type));
             updateFoodPlaceList(placeoftype, type);
         }
+
+        return this.foodPlaceLIST;
 
     }
 
