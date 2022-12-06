@@ -1,5 +1,8 @@
-package Map;
+package Features;
 
+import Features.Factory;
+import Features.Place;
+import Features.PlaceInfo;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 
 import java.io.*;

@@ -9,8 +9,9 @@
  * https://www.webscrapingapi.com/java-web-scraping
  */
 
-package Map;
+package Features;
 
+import Features.Place;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;

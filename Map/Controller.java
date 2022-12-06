@@ -1,6 +1,6 @@
 package Map;
 
-import Features.TextToSpeech;
+import Features.*;
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
@@ -12,19 +12,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import java.lang.String.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static Map.PlaceInfo.getAnchorsofNamesURL;
-import static Map.PlaceInfo.name;
+import static Features.PlaceInfo.getAnchorsofNamesURL;
+import static Features.PlaceInfo.name;
 
 public class Controller implements Initializable, MapComponentInitializedListener {
 

@@ -1,4 +1,4 @@
-package Map;
+package Features;
 
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 

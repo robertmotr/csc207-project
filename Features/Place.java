@@ -1,4 +1,4 @@
-package Map;
+package Features;
 
 public class Place {
     public String url;

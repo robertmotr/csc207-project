@@ -1,6 +1,6 @@
-package Map;
+package Features;
 
-public class FoodPlace extends Place{
+public class FoodPlace extends Place {
 
     public String type;
 

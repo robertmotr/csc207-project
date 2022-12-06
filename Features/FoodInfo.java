@@ -1,18 +1,14 @@
-package Map;
+package Features;
 
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
-import java.io.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-public class FoodInfo extends PlaceInfo{
+public class FoodInfo extends PlaceInfo {
     final String FOODTYPEURL = "?id=1809&cId=48659";
     private String tot = "";
     ArrayList<Place> foodPlaceLIST = new ArrayList<>();
