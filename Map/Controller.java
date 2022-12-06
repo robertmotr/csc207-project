@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,10 +28,6 @@ import static Map.PlaceInfo.getAnchorsofNamesURL;
 import static Map.PlaceInfo.name;
 
 public class Controller implements Initializable, MapComponentInitializedListener {
-
-    private DirectionsService directionsService;
-    private DirectionsPane directionsPane;
-
     @FXML
     private GoogleMapView mapView;
 
@@ -51,7 +48,6 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
     @FXML
     private TreeView filterSearch;
-
 
     //infos
     ArrayList<Place> buildingInfo;
@@ -95,24 +91,12 @@ public class Controller implements Initializable, MapComponentInitializedListene
         //Display tree view
         displayTreeView();
 
-        //Search Button
-        searchBtn.setOnAction(e -> {
-            //if filter not selected, assume its searching for building
-            if(searchBar.getText() != null){
-                String link = null;
-                String display = "Invalid Place";
-                try {
-                    link = searchPlace(searchBar.getText());
-                    if(link != null){
-                        display = PlaceInfo.specPlace(link);
-                        System.out.println(display);
-                    }
-                    sidebar.setText(display);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+/*        ArrayList<String> suggestions = new ArrayList<>();
+        suggestions.addAll((Collection<? extends String>) this.buildingInfo.stream().map(e -> e.name));
+        suggestions.addAll((Collection<? extends String>) this.foodplaceInfo.stream().map(e -> e.name));
+        suggestions.addAll((Collection<? extends String>) this.studyplaceInfo.stream().map(e -> e.name));
+
+        TextFields.bindAutoCompletion(searchBar, suggestions).setDelay(50);*/
 
         //Turn on multiple select mode
         filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -227,29 +211,31 @@ public class Controller implements Initializable, MapComponentInitializedListene
     public void mapInitialized() {
         GoogleMapsInstance.onInitialized();
         this.points = new Stack<>();
-        DirectionsService service = new DirectionsService();
-        this.directionsService = service;
         GoogleMap map = GoogleMapsInstance.getMap();
-        DirectionsPane pane = mapView.getDirec();
-        this.directionsPane = pane;
 
         map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
-            if(this.points.size() == 0) {
-                Position a = new Position(event.getLatLong(), map);
-                points.add(a);
-            }
-            else if(this.points.size() == 1) {
-                Position b = new Position(event.getLatLong(), map);
-                Position a = points.pop();
-                points.add(a); points.add(b);
-            }
-            else {
-                Position b = points.pop();
-                Position a = points.pop();
+            GoogleMapsInstance.onMouseClick(event);
+        });
 
-                a.destroyMarker();
-                Position newPt = new Position(event.getLatLong(), map);
-                points.add(b); points.add(newPt);
+        //Search Button
+        searchBtn.setOnAction(e -> {
+            //if filter not selected, assume its searching for building
+            if(searchBar.getText() != null){
+                String link = null;
+                String display = "Invalid Place";
+                try {
+                    link = searchPlace(searchBar.getText());
+                    if(link != null){
+                        display = PlaceInfo.specPlace(link);
+                        GoogleMapsInstance.clearMap();
+                        String[] split = display.split("\n");
+                        String address = split[4];
+                        GoogleMapsInstance.addMarker(address);
+                    }
+                    sidebar.setText(display);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
