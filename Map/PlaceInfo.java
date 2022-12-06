@@ -28,7 +28,7 @@ public abstract class PlaceInfo {
     static final String MAINURL = "https://myatlascms.com/map/accessible.php";
     static final String SPECPLACEINFOXPATH = "//ol[@role='list']/li[@role='listitem']";
     static final String LISTXPATH = "//li[@role='listitem']/a";
-    public HashMap<String,String> foodTypeLIST;
+    public static HashMap<String,String> foodTypeLIST;
 
     /**
      * Return a list of HTMLListItem from url and xPathExp
@@ -76,7 +76,7 @@ public abstract class PlaceInfo {
 
         //Retrieve <li> elements
         List<HtmlAnchor> anchors = page.getByXPath(LISTXPATH);
-        return  anchors;
+        return anchors;
     }
 
 

@@ -85,11 +85,13 @@ public class Controller implements Initializable, MapComponentInitializedListene
             //if filter not selected, assume its searching for building
             if(!searchBar.getText().equals(null)){
                 String link = null;
-                String filter = "";
+                String display = "Invalid Place";
                 try {
-                    link = searchPlace(searchBar.getText(), filter);
-                    String display = PlaceInfo.specPlace(link);
-                    System.out.println(display);
+                    link = searchPlace(searchBar.getText());
+                    if(link != null){
+                        display = PlaceInfo.specPlace(link);
+                        System.out.println(display);
+                    }
                     sidebar = new Text(display);
                     sidebar.wrappingWidthProperty().set(345);
                 } catch (IOException ex) {
@@ -114,7 +116,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> halalItem = new TreeItem<>("Halal Places");
         try {
-            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Halal Entrees Available"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Halal Entrees Available"))){
                 halalItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -122,7 +124,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> beverageItem = new TreeItem<>("Beverage Places");
         try {
-            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Beverages"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Beverages"))){
                 beverageItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -130,7 +132,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> kosherItem = new TreeItem<>("Kosher Places");
         try {
-            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Kosher Food Available"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Kosher Food Available"))){
                 kosherItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -138,7 +140,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> veganItem = new TreeItem<>("Vegan Places");
         try {
-            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Vegan Foods"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Vegan Foods"))){
                 veganItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -146,7 +148,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         }
         TreeItem<String> vegItem = new TreeItem<>("Vegetarian Places");
         try {
-            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(foodTypeInfo.get("Vegetarian Foods"))){
+            for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Vegetarian Food"))){
                 vegItem.getChildren().add(new TreeItem<>(name(place)));
             }
         } catch (IOException e) {
@@ -161,23 +163,21 @@ public class Controller implements Initializable, MapComponentInitializedListene
     }
 
 
-    public String searchPlace(String place, String filterName) throws IOException {
-        ArrayList<Place> filterPlaces = new ArrayList<>();
-
-        //
-        if(filterName == "Study Places"){
-            filterPlaces = this.studyplaceInfo;
-        }
-        if(filterName == "Food Places"){
-            filterPlaces = this.foodplaceInfo;
-        }
-        if(filterName == "Building Places"){
-            filterPlaces = this.buildingInfo;
-        }
-
-        for(Place p : filterPlaces){
-            if(p.name.toLowerCase() == place.toLowerCase()){
+    public String searchPlace(String place) throws IOException {
+        String search = place.toLowerCase();
+        for(Place p : this.buildingInfo){
+            if(p.name.toLowerCase().equals(search)){
                 return p.url;
+            }
+        }
+        for(Place q : this.studyplaceInfo){
+            if(q.name.toLowerCase().equals(search)){
+                return q.url;
+            }
+        }
+        for(Place r : this.foodplaceInfo){
+            if(r.name.toLowerCase().equals(search)){
+                return r.url;
             }
         }
         return null;

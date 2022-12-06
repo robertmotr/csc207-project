@@ -21,7 +21,7 @@ public class FoodInfo extends PlaceInfo{
         for(HtmlAnchor build : l){
             String name = build.asNormalizedText();
             String url = build.getHrefAttribute();
-            this.foodTypeLIST.put(name, url);
+            foodTypeLIST.put(name, url);
         }
     }
 
