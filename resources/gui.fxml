@@ -70,7 +70,6 @@
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="30.0" />
                </VBox.margin>
-            </Label>
          </children>
       </VBox>
       <AnchorPane fx:id="mapPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="998.4" prefWidth="1161.6" GridPane.rowIndex="1">

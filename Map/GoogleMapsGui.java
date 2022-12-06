@@ -10,7 +10,7 @@ import javafx.geometry.Pos;
 import java.util.ArrayList;
 import java.util.Stack;
 /**
- * A static map of UTSG campus
+ * A dynamic map of UTSG campus
  *
  * Reference from:
  * https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
@@ -20,6 +20,7 @@ import java.util.Stack;
  */
 
 public class GoogleMapsGui {
+
     private static GoogleMapsGui instance = null;
 
     private Stack<Position> points;

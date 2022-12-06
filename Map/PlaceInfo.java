@@ -22,25 +22,18 @@ import java.util.List;
 
 
 
-public class PlaceInfo {
-    public final String MAINURL = "https://myatlascms.com/map/accessible.php";
-    public final String SPECPLACEINFOXPATH = "//ol[@role='list']/li[@role='listitem']";
-    public final String LISTXPATH = "//li[@role='listitem']/a";
-    public String totlist;
-    public String url;
-
-    public PlaceInfo(String url){
-        this.url = url;
-    }
+public abstract class PlaceInfo {
+    public static final String MAINURL = "https://myatlascms.com/map/accessible.php";
+    public static final String SPECPLACEINFOXPATH = "//ol[@role='list']/li[@role='listitem']";
+    public static final String LISTXPATH = "//li[@role='listitem']/a";
 
     /**
-     * Return a place's general information from web
+     * Return a list of HTMLListItem from url and xPathExp
      * @param webUrl
-     * @return Place's general info
+     * @return
      * @throws IOException
      */
-    public String specPlace(String webUrl) throws IOException {
-
+    public List<HtmlListItem> getLiforSpecPlace(String webUrl) throws IOException {
         //Build webclient
         WebClient client = new WebClient(BrowserVersion.CHROME);
 
@@ -52,17 +45,19 @@ public class PlaceInfo {
         client.close();
 
         //Retrieve <li> elements
-        List<HtmlListItem> anchors = page.getByXPath(SPECPLACEINFOXPATH);
+        List<HtmlListItem> specplace = page.getByXPath(SPECPLACEINFOXPATH);
 
-        //Get the third li element
-        String placeInfo = anchors.get(anchors.size()-1).asNormalizedText();
-
-        return placeInfo;
+        return specplace;
     }
 
 
-
-    public String getList(String url) throws IOException {
+    /**
+     * Return a list of HTMLAnchor from url and xPathExp
+     * @param url
+     * @return
+     * @throws IOException
+     */
+    public List<HtmlAnchor> getAnchorsofNamesURL(String url) throws IOException {
         //WebURL
         String webUrl = MAINURL + url;
 
@@ -78,17 +73,18 @@ public class PlaceInfo {
 
         //Retrieve <li> elements
         List<HtmlAnchor> anchors = page.getByXPath(LISTXPATH);
-
-        //Store places
-        StringBuilder output = new StringBuilder();
-        for(HtmlAnchor anchor : anchors){
-            output.append(anchor.asNormalizedText()).append(",").append(anchor.getHrefAttribute()).append("\n");
-        }
-        return output.toString();
+        return  anchors;
     }
 
 
-    public String getList(String url, String xPathEpr) throws IOException {
+    /**
+     * Return a list of HTMLAnchor from url and xPathExp
+     * @param url
+     * @param xPathExp
+     * @return
+     * @throws IOException
+     */
+    public List<HtmlAnchor> getAnchorsofNamesURL(String url, String xPathExp) throws IOException {
         //WebURL
         String webUrl = MAINURL + url;
 
@@ -103,7 +99,38 @@ public class PlaceInfo {
         client.close();
 
         //Retrieve <li> elements
-        List<HtmlAnchor> anchors = page.getByXPath(xPathEpr);
+        List<HtmlAnchor> anchors = page.getByXPath(xPathExp);
+        return  anchors;
+    }
+
+
+    /**
+     * Return a place's general information from web
+     * @param webUrl
+     * @return Place's general info
+     * @throws IOException
+     */
+    public String specPlace(String webUrl) throws IOException {
+        //Retrieve <li> elements
+        List<HtmlListItem> anchors = getLiforSpecPlace(webUrl);
+
+        //Get the last li element to avoid duplicates
+        String placeInfo = anchors.get(anchors.size()-1).asNormalizedText();
+
+        return placeInfo;
+    }
+
+    /**
+     * Return the list of li elements in string
+     *
+     * @param url
+     * @return
+     * @throws IOException
+     */
+    public String getList(String url) throws IOException {
+        //Retrieve <li> elements
+        List<HtmlAnchor> anchors = getAnchorsofNamesURL(url);
+
         //Store places
         StringBuilder output = new StringBuilder();
         for(HtmlAnchor anchor : anchors){
@@ -112,10 +139,38 @@ public class PlaceInfo {
         return output.toString();
     }
 
+
+    /**
+     * Return the list of li elements in string
+     * @param url
+     * @param xPathEpr
+     * @return
+     * @throws IOException
+     */
+    public String getList(String url, String xPathEpr) throws IOException {
+        //Retrieve <li> elements
+        List<HtmlAnchor> anchors = getAnchorsofNamesURL(url, xPathEpr);
+        //Store places
+        StringBuilder output = new StringBuilder();
+        for(HtmlAnchor anchor : anchors){
+            output.append(anchor.asNormalizedText()).append(",").append(anchor.getHrefAttribute()).append("\n");
+        }
+        return output.toString();
+    }
+
+    /**
+     * Save file to resource
+     * @param file
+     * @param input
+     * @throws IOException
+     */
     public void saveListFile(File file, String input) throws IOException{
         FileWriter fout = new FileWriter(file);
         Writer writer = new BufferedWriter(fout);
         writer.write(input);
         writer.close();
-    };
+    }
+
+    public abstract void getTotlist() throws IOException;
+
 }

@@ -4,10 +4,25 @@ import java.io.IOException;
 
 public class Factory {
 
-    public PlaceInfo createInfo(String type) throws IOException {
-        if(type == "building") return new BuildingInfo();
-        if(type == "study") return new StudyInfo();
-        if(type == "food") return new FoodInfo();
-        return null;
+    /**
+     * Create Place
+     * @param name
+     * @param url
+     * @return
+     */
+    public static Place createPlace(String name, String url){
+        return new Place(name, url);
+    }
+
+    /**
+     * Create Food Place
+     * @param name
+     * @param url
+     * @param type
+     * @return
+     * @throws IOException
+     */
+    public static Place createFoodPlace(String name, String url, String type) throws IOException {
+        return new FoodPlace(name, type, url);
     }
 }

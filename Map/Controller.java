@@ -25,7 +25,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
-
 public class Controller implements Initializable, MapComponentInitializedListener {
 
     private DirectionsService directionsService;
@@ -54,9 +53,11 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
 
     //infos
-    PlaceInfo studyInfo;
-    PlaceInfo foodInfo;
     PlaceInfo buildingInfo;
+    PlaceInfo studyplaceInfo;
+    PlaceInfo foodplaceInfo;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,10 +69,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
         //Initiate infos
         try {
-            Factory factory = new Factory();
-            this.studyInfo = factory.createInfo("study");
-            this.foodInfo = factory.createInfo("food");
-            this.buildingInfo = factory.createInfo("building");
+            initInfos();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -92,6 +90,17 @@ public class Controller implements Initializable, MapComponentInitializedListene
             MenuButton menuButton = new MenuButton("Don't touch this");
             menuButton.getItems().addAll(new MenuItem("Really"), new MenuItem("Do not"));
         });
+    }
+
+    private void initInfos() throws IOException {
+        this.buildingInfo = new BuildingInfo();
+        this.studyplaceInfo = new StudyInfo();
+        this.foodplaceInfo = new FoodInfo();
+
+        this.buildingInfo.getTotlist();
+        this.studyplaceInfo.getTotlist();
+        this.foodplaceInfo.getTotlist();
+
     }
 
     public String searchFile(String filepath, String place) throws IOException {
