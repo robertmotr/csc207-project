@@ -12,6 +12,9 @@ Class meant to abstract away details from a marker position from the GMapsFX lib
  **/
 public class Position {
 
+    private String address;
+    private String addressDetails;
+
     private static GoogleMap map;
 
     private LatLong coordinate;
@@ -48,6 +51,9 @@ public class Position {
             placeId[0] = parts[0] + "," + parts[1];
             address[0] = parts[2] + "," + parts[3];
 
+            this.address = placeId[0];
+            this.addressDetails = address[0];
+
             this.options = new InfoWindowOptions();
             this.options.content("<h2>Position selected:</h2>" +
                     placeId[0] + "<br>" +
@@ -72,6 +78,29 @@ public class Position {
         this.window = null;
         this.options = null;
         this.coordinate = null;
+    }
+
+    public LatLong getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(LatLong coordinate) {
+        this.coordinate = coordinate;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddressDetails() {
+        return addressDetails;
+    }
+
+    public void setAddressDetails(String addressDetails) {
+        this.addressDetails = addressDetails;
     }
 
 }

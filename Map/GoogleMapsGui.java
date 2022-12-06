@@ -4,6 +4,8 @@ import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
+import com.dlsc.gmapsfx.service.directions.*;
+import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -59,7 +61,7 @@ public class GoogleMapsGui {
         MapOptions mapOptions = new MapOptions();
 
         mapOptions.center(centerLocation)
-                .mapType(MapTypeIdEnum.SATELLITE)
+                .mapType(MapTypeIdEnum.ROADMAP)
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
@@ -85,18 +87,6 @@ public class GoogleMapsGui {
 
         InfoWindow window = new InfoWindow(infoWindowOptions);
         window.open(map, main);
-
-
-        map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
-            if(this.points.size() >= 2) {
-                Position b = points.pop(); Position a = points.pop();
-                a.destroyMarker();
-                this.points.add(b); this.points.add(new Position(event.getLatLong(), map));
-            }
-            else {
-                points.add(new Position(event.getLatLong(), map));
-            }
-        });
     }
 
     public GoogleMap getMap() {
@@ -106,5 +96,4 @@ public class GoogleMapsGui {
     public void setMap(GoogleMap map) {
         this.map = map;
     }
-
 }
