@@ -118,13 +118,11 @@ public class GoogleMapsGui {
             point.destroyMarker();
         }
         points.clear();
+        map.clearMarkers();
     }
 
-    public void addMarker(LatLong coordinate) {
-        Position position = new Position(coordinate, map);
-    }
-
-    public void addMarker(String address) {
+    public Position addMarker(LatLong coordinate) {
+        return new Position(coordinate, map);
     }
 
     public GoogleMap getMap() {

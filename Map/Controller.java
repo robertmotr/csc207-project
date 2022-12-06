@@ -1,6 +1,8 @@
 package Map;
 
+import Features.TextToSpeech;
 import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
@@ -10,10 +12,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-
+import java.lang.String.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -23,6 +27,8 @@ import static Map.PlaceInfo.getAnchorsofNamesURL;
 import static Map.PlaceInfo.name;
 
 public class Controller implements Initializable, MapComponentInitializedListener {
+
+    private Position currentSearchedPt = null;
     @FXML
     private GoogleMapView mapView;
 
@@ -70,6 +76,11 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        sidebar.setWrapText(true);
+        sidebar.setPrefWidth(730);
+        sidebar.setPrefHeight(500);
+        sidebar.setMaxHeight(500);
 
         GoogleMapsInstance = GoogleMapsGui.initialize(mapView);
         this.instance = GoogleMapsInstance;
@@ -129,11 +140,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
                             }
                             sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue() + ". \n" +
                                     "Directions: " + GoogleMapsApi.getDirections(origin, destination, "walking"));
-                            
-                            sidebar.setWrapText(true);
-                            sidebar.setPrefWidth(730);
-                            sidebar.setPrefHeight(500);
-                            sidebar.setMaxHeight(500);
+
                         }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -234,11 +241,16 @@ public class Controller implements Initializable, MapComponentInitializedListene
         GoogleMap map = GoogleMapsInstance.getMap();
         
         map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
+            if(this.currentSearchedPt != null) {
+                GoogleMapsInstance.clearMap();
+                this.currentSearchedPt = null;
+            }
             GoogleMapsInstance.onMouseClick(event);
         });
 
         //Search Button
         searchBtn.setOnAction(e -> {
+            GoogleMapsInstance.clearMap();
             //if filter not selected, assume its searching for building
             if(searchBar.getText() != null){
                 String link = null;
@@ -247,10 +259,11 @@ public class Controller implements Initializable, MapComponentInitializedListene
                     link = searchPlace(searchBar.getText());
                     if(link != null){
                         display = PlaceInfo.specPlace(link);
-                        GoogleMapsInstance.clearMap();
-                        String[] split = display.split("\n");
-                        String address = split[4];
-                        // GoogleMapsInstance.addMarker(address);
+                        String address = formatAddress(display.split("\n"));
+                        LatLong coordinate = GoogleMapsApi.getLatLongFromAddress(address);
+                        if(coordinate != null) {
+                            this.currentSearchedPt = GoogleMapsInstance.addMarker(coordinate);
+                        }
                     }
                     sidebar.setText(display);
                 } catch (IOException ex) {
@@ -258,6 +271,25 @@ public class Controller implements Initializable, MapComponentInitializedListene
                 }
             }
         });
+    }
+
+    /**
+     * Used to determine the correct address from a web-scraped description of a place at University of Toronto.
+     * Called in the searchBtn handler.
+     * @param split
+     * @return
+     */
+    private String formatAddress(String[] split) {
+        String address = "";
+        for(int i = 0; i < split.length; i++) {
+            String testStr = split[i].trim();
+            if(testStr.equals("Toronto, ON")) {
+                address = split[i - 1];
+                address = address.replaceAll(" ", "+") + "+Toronto+Ontario";
+                return address;
+            }
+        }
+        return searchBar.getText().replaceAll(" ", "+") + "+Toronto+Ontario";
     }
 
     @FXML
@@ -275,5 +307,13 @@ public class Controller implements Initializable, MapComponentInitializedListene
         alert.setTitle("About:");
         alert.setHeaderText("An informative note:");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void onMenuBarClearMarkers() {this.GoogleMapsInstance.clearMap();}
+
+    @FXML
+    private void onTTS() {
+        TextToSpeech.speak(this.sidebar.getText());
     }
 }

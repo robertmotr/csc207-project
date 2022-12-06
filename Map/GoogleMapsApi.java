@@ -75,7 +75,7 @@ public class GoogleMapsApi {
         output += jsonArray.getJSONObject(jsonArray.length() - 1).get("html_instructions");
         String string = "<div style=\\\"font-size:0.9em\\\">";
         output = output.replaceAll(string, " and your ");
-        return output.replaceAll("<.*?>", "");
+        return output.replaceAll("<.*?>", "") + ".";
     }
 
 
@@ -106,7 +106,7 @@ public class GoogleMapsApi {
             return null;
         }
         jsonArray = jsonObject.getJSONArray("results");
-        jsonObject = jsonArray.getJSONObject(1);
+        jsonObject = jsonArray.getJSONObject(0);
         jsonObject = jsonObject.getJSONObject("geometry");
         jsonObject = jsonObject.getJSONObject("location");
 
