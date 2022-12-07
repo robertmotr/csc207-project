@@ -140,7 +140,9 @@ public class Controller implements Initializable, MapComponentInitializedListene
     }
 
     public void displayTreeView(){
+        // display places
         TreeItem<String>  rootItem = new TreeItem<>("Places");
+        // three main sub categories
         TreeItem<String> studyItem = new TreeItem<>("Study Places");
         for (Place place: this.studyplaceInfo){
             studyItem.getChildren().add(new TreeItem<>(place.name));
@@ -154,6 +156,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         for (Place place: this.foodplaceInfo) {
             allFoodItem.getChildren().add(new TreeItem<>(place.name));
         }
+        // restrictions
         TreeItem<String> halalItem = new TreeItem<>("Halal Places");
         try {
             for (HtmlAnchor place: PlaceInfo.getAnchorsofNamesURL(this.foodTypeInfo.get("Halal Entrees Available"))){
@@ -195,9 +198,11 @@ public class Controller implements Initializable, MapComponentInitializedListene
             throw new RuntimeException(e);
         }
 
+        // add the specific type of food options to food list
         foodItem.getChildren().addAll(allFoodItem, halalItem, beverageItem,
                 kosherItem, vegItem, veganItem);
 
+        // add all the branches to root item and set it in treeView
         rootItem.getChildren().addAll(studyItem, foodItem, buildingItem);
         filterSearch.setRoot(rootItem);
     }
