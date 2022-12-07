@@ -35,8 +35,9 @@ public class GoogleMapsApi {
     public static String getDirections(String origin, String destination, String mode){
 
         String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
+
+        //Makes Google Maps directions Api url for given params
         URL url = null;
-        mode = mode.toLowerCase();
         try {
             url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin +
                     "&destination=" + destination +
@@ -46,6 +47,7 @@ public class GoogleMapsApi {
             return "Error making URL in GoogleMapsAPI";
         }
 
+        //Puts data from url into jsonObject
         JSONObject jsonObject = null;
         try {
             String text = IOUtils.toString(url, Charset.forName("UTF-8"));
@@ -54,17 +56,21 @@ public class GoogleMapsApi {
             return "Error in parsing URL in GoogleMapsAPI";
         }
 
+        //Checks for valid route
         JSONArray jsonArray =  jsonObject.getJSONArray("routes");
         if(jsonArray.length() == 0){
             return "No route found";
         }
+
+        //Sets jsonArray to where the directions are stored
         jsonObject=  jsonArray.getJSONObject(0);
         jsonArray = jsonObject.getJSONArray("legs");
         jsonObject = jsonArray.getJSONObject(0);
         jsonArray = jsonObject.getJSONArray("steps");
 
-        JSONObject current = new JSONObject(jsonObject);
         String output = "";
+
+        //Iterates through the directions formatting them and appending them to output
 
         for(int i = 0; i < jsonArray.length() - 1; i++){
             output += jsonArray.getJSONObject(i).get("html_instructions");
@@ -86,6 +92,8 @@ public class GoogleMapsApi {
      * and replace spaces with "+".
      */
     public static LatLong getLatLongFromAddress(String address){
+
+        //Makes Google geocode API url for the address
         String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
         URL url = null;
         try {
@@ -94,6 +102,7 @@ public class GoogleMapsApi {
             return null;
         }
 
+        //Puts data from url into jsonObject
         JSONObject jsonObject = null;
         JSONArray jsonArray = null;
         try {
@@ -102,13 +111,18 @@ public class GoogleMapsApi {
         } catch (IOException e) {
             return null;
         }
+
         if(!(jsonObject.get("status").equals("OK"))){
             return null;
         }
+
+        //Sets jsonObject to where the lat and long are stored
         jsonArray = jsonObject.getJSONArray("results");
         jsonObject = jsonArray.getJSONObject(0);
         jsonObject = jsonObject.getJSONObject("geometry");
         jsonObject = jsonObject.getJSONObject("location");
+
+        //Gets lat and long and returns them.
 
         BigDecimal bigLat = (BigDecimal) jsonObject.get("lat");
         double smallLat = bigLat.doubleValue();
