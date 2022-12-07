@@ -61,6 +61,10 @@ public class Controller implements Initializable, MapComponentInitializedListene
     TreeItem<String> prevVal;
     TreeItem<String> currVal;
 
+    /**
+     * Initialize infos
+     * @throws IOException
+     */
     private void initInfos() throws IOException {
         initBuild = new BuildingInfo();
         initFood = new StudyInfo();
@@ -114,7 +118,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
                                 TreeItem<String> newVal) {
-
+                //Store the two possible point
                 prevVal = oldVal;
                 currVal = newVal;
 
@@ -225,8 +229,15 @@ public class Controller implements Initializable, MapComponentInitializedListene
     }
 
 
+    /**
+     * See if place exist in utsg
+     * @param place
+     * @return
+     * @throws IOException
+     */
     public String searchPlace(String place) throws IOException {
         String search = place.toLowerCase();
+        //Go through all place list to find place
         for(Place p : this.buildingInfo){
             if(p.name.toLowerCase().equals(search)){
                 return p.url;
@@ -262,7 +273,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
         //Search Button
         searchBtn.setOnAction(e -> {
             GoogleMapsInstance.clearMap();
-            //if filter not selected, assume its searching for building
+            //if searchbar is not empty then search if it is valid and display on sidebar
             if(searchBar.getText() != null){
                 String link = null;
                 String display = "Invalid Place";

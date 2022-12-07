@@ -16,10 +16,10 @@ public class BuildingInfo extends PlaceInfo {
     ArrayList<Place> buildingLIST = new ArrayList<>();
     String tot = "";
 
-    public BuildingInfo(){
-
-    }
-
+    /**
+     * update buildingLIST
+     * @param l
+     */
     private void updateList(List<HtmlAnchor> l){
         for(HtmlAnchor build : l){
             String name = build.asNormalizedText();
@@ -28,6 +28,11 @@ public class BuildingInfo extends PlaceInfo {
         }
     }
 
+    /**
+     *
+     * @return buildingLIST
+     * @throws IOException
+     */
     @Override
     public ArrayList<Place> getTotlist() throws IOException {
         List<HtmlAnchor> trinity = getAnchorsofNamesURL(TRINITY);
@@ -49,6 +54,10 @@ public class BuildingInfo extends PlaceInfo {
         return this.buildingLIST;
     }
 
+    /**
+     * Save building list to file, used to generate back up
+     * @throws IOException
+     */
     public void saveBuildListFile() throws IOException {
         //Go through buildlist
         for(Place bui : this.buildingLIST){
