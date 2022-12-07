@@ -16,9 +16,9 @@ public class TextToSpeech {
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         Voice voice = VoiceManager.getInstance().getVoice("kevin16");
         voice.allocate();
-        voice.setRate(110);
-        voice.setPitch(100);
+        voice.setRate(140);
+        voice.setPitch(140);
         voice.setVolume(5);
-        voice.speak(words);
+        voice.speak(words.replaceAll("&", "and"));
     }
 }
