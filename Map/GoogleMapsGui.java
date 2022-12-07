@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Stack;
 /**
- * A dynamic map of UTSG campus
+ * A dynamic map of the UTSG campus. Uses the Singleton design pattern.
  *
  * Reference from:
  * https://stackoverflow.com/questions/1993981/how-to-access-google-maps-api-in-java-application
@@ -26,18 +26,31 @@ public class GoogleMapsGui {
 
     private static GoogleMapsGui instance = null;
 
+    // Represents the two possible points that a user may select on the map.
     private Stack<Position> points;
 
     private GoogleMap map;
     private GoogleMapView mapView;
+
+    // API Key should not be touched, and should also be removed from the source code if this project is
+    // ever made public.
     private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
 
+    /**
+     * Constructor to create a GoogleMapsGui Singleton instance. Should not be used directly, hence made private.
+     * @param view
+     */
     private GoogleMapsGui(GoogleMapView view) {
         view.setKey(apiKey);
         points = new Stack<>();
         this.mapView = view;
     }
 
+    /**
+     * getInstance method returns the current Singleton instance of GoogleMapsGui if there is one.
+     * Throws runtime exception if this method is called without using the initialize method first.
+     * @return
+     */
     public static GoogleMapsGui getInstance() {
         if(instance == null) {
             throw new RuntimeException("Singleton must be initialized before getting instance.");
@@ -45,6 +58,11 @@ public class GoogleMapsGui {
         return instance;
     }
 
+    /**
+     * Creates and returns a Singleton GoogleMapsGui Singleton instance given a GoogleMapView control from GMapsFX.
+     * @param view
+     * @return
+     */
     public static GoogleMapsGui initialize(GoogleMapView view) {
         if(instance == null) {
             instance = new GoogleMapsGui(view);
@@ -53,10 +71,10 @@ public class GoogleMapsGui {
     }
 
 
-    public GoogleMapView getMapView() {
-        return mapView;
-    }
-
+    /**
+     * Handles map initialization for the GoogleMapView control within the controller. This method should NOT be
+     * used anywhere else except under the mapInitialized method within Controller.
+     */
     public void onInitialized() {
 
         LatLong centerLocation = new LatLong(43.66284509183421, -79.39576369024316);
@@ -93,6 +111,12 @@ public class GoogleMapsGui {
         window.open(map, main);
     }
 
+
+    /**
+     * Handles a mouseClick event under the mouseClick listener in controller. This method should be passed only when a
+     * mouse click on the map is registered. This method should NOT be used anywhere else.
+     * @param event
+     */
     public void onMouseClick(GMapMouseEvent event) {
         if(this.points.size() == 0) {
             Position a = new Position(event.getLatLong(), map);
@@ -113,6 +137,9 @@ public class GoogleMapsGui {
         }
     }
 
+    /**
+     * clearMap() clears all markers and associated objects from the map.
+     */
     public void clearMap() {
         for(Position point : points) {
             point.destroyMarker();
@@ -121,8 +148,18 @@ public class GoogleMapsGui {
         map.clearMarkers();
     }
 
+    /**
+     * Adds a marker given a LatLong object onto the map. Returns the Position object created by the LatLong object.
+     * @param coordinate
+     * @return
+     */
     public Position addMarker(LatLong coordinate) {
         return new Position(coordinate, map);
+    }
+
+    // Getters and setters shown below:
+    public GoogleMapView getMapView() {
+        return mapView;
     }
 
     public GoogleMap getMap() {

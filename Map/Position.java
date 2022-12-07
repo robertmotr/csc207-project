@@ -8,13 +8,18 @@ import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
 import java.util.Arrays;
 
 /**
-Class meant to abstract away details from a marker position from the GMapsFX library. Facade design pattern.
+Class meant to abstract away details from a marker position from the GMapsFX library. Uses the facade design pattern.
+ Handles putting a marker on the map and geocoding the details.
  **/
 public class Position {
 
+    // Represents formatted "pretty address"
     private String address;
+
+    // Represents the rest of the address details, such as postal code, province and country
     private String addressDetails;
 
+    // Static map instance to be shared across Position instances.
     private static GoogleMap map;
 
     private LatLong coordinate;
@@ -31,6 +36,12 @@ public class Position {
         this.markerOptions = null;
     }
 
+    /**
+     * Handles building a marker on a map given a LatLong co-ordinate object, and a map object to place the marker on.
+     * Also handles creating an infowindow to describe the details of the location by reverse geocoding.
+     * @param coordinate
+     * @param map
+     */
     public Position(LatLong coordinate, GoogleMap map) {
 
         this.coordinate = coordinate;
@@ -80,6 +91,8 @@ public class Position {
         this.coordinate = null;
     }
 
+
+    // Getters and setters for class attributes that should be allowed to be retrieved and/or modified.
     public LatLong getCoordinate() {
         return coordinate;
     }

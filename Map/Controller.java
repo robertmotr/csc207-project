@@ -76,6 +76,14 @@ public class Controller implements Initializable, MapComponentInitializedListene
         this.foodTypeInfo = initFood.foodTypeLIST;
     }
 
+    /**
+     * The initialize method for Controller is called when the FXML file is parsed and objects need to be initialized.
+     * Note that any code below should assume that the GoogleMapView has NOT been initialized yet. See the mapInitialized
+     * method for that purpose.
+     * Method should not be called anywhere else but here.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -111,10 +119,10 @@ public class Controller implements Initializable, MapComponentInitializedListene
         //Turn on multiple select mode
         filterSearch.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        //Get slection model1
+        //Get selection model1
         MultipleSelectionModel<TreeItem<String>> selected = filterSearch.getSelectionModel();
 
-        
+        // Event listener to handle if user selects a TreeItem.
         selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
             public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
                                 TreeItem<String> newVal) {
@@ -165,6 +173,8 @@ public class Controller implements Initializable, MapComponentInitializedListene
         });
     }
 
+    // Helper method to handle initializing and displaying the TreeItem objects for the filterSearch TreeView
+    // control.
     public void displayTreeView(){
         TreeItem<String>  rootItem = new TreeItem<>("Places");
         TreeItem<String> studyItem = new TreeItem<>("Study Places");
@@ -256,6 +266,12 @@ public class Controller implements Initializable, MapComponentInitializedListene
         return null;
     }
 
+
+    /**
+     * Method that gets called when the GoogleMapView control is initialized fully. You may assume that the mapView has been
+     * loaded at this point, and the initialize method for the Controller has also terminated. This method should not
+     * be called anywhere else but here.
+     */
     @Override
     public void mapInitialized() {
         GoogleMapsInstance.onInitialized();
@@ -317,11 +333,19 @@ public class Controller implements Initializable, MapComponentInitializedListene
         return null;
     }
 
+    /**
+     * Called when the user clicks on the File -> Close button in the menu bar. Simply terminates the program.
+     * Can be used directly.
+     */
     @FXML
     private void onMenuBarClose() {
         System.exit(0);
     }
 
+    /**
+     * Called when the user clicks on the Help -> About button in the menu bar. Shows a description of the project,
+     * a short summary, group members behind it, and the GitHub repository link. Can be called directly.
+     */
     @FXML
     private void onMenuBarAbout() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Designed by WERM group for 2022 CSC207H5 final project @ UTM.\n" +
@@ -334,9 +358,17 @@ public class Controller implements Initializable, MapComponentInitializedListene
         alert.showAndWait();
     }
 
+    /**
+     * Called when the user clicks on the Map -> Clear markers button in the menu bar. Clears all the markers on the
+     * dynamic map. Can be used directly.
+     */
     @FXML
     private void onMenuBarClearMarkers() {this.GoogleMapsInstance.clearMap();}
 
+    /**
+     * Called when the user clicks on the TTS button in the lower right hand corner of the screen, for accessibility
+     * purposes. A chat bot will then read out the directions/building info to the user through audio.
+     */
     @FXML
     private void onTTS() {
         TextToSpeech.speak(this.sidebar.getText());
