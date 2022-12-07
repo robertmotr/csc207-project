@@ -65,7 +65,7 @@ public class GoogleMapsGui {
         MapOptions mapOptions = new MapOptions();
 
         mapOptions.center(centerLocation)
-                .mapType(MapTypeIdEnum.ROADMAP)
+                .mapType(MapTypeIdEnum.SATELLITE)
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
