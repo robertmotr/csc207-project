@@ -2,7 +2,6 @@ package Map;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.object.LatLong;
-import okhttp3.*;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,23 +13,29 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 /**
- * Communications to Google Maps, directions and place API
+ * Used to make Google Maps Api requests
  *
  * Reference from:
  * https://developers.google.com/maps/documentation/directions/get-directions#maps_http_directions_toronto_montreal-java
  * https://www.baeldung.com/java-read-json-from-url
+ * @author Mico
  */
 
 public class GoogleMapsApi {
 
-    private final String apiKey = "AIzaSyCPfTsYtKOIcTNmhPGUrDphHTI5giH5X9s";
-
     /**
-     * Returns written instructions how to get from origin to destination via Google Maps api.
-     * origin and destination can be a lat and long seperated by a comma (NO SPACE)
-     * ex. "43.66384509183421,-79.39576369024316"
-     * mode must be either "walking", "driving" or "bicycling"
-     * if directions are not found, returns "No route found"
+     * Uses the Google Maps Directions Api to get a written set of instructions to get from origin to destination via
+     * mode.
+     *
+     * The instructions are formatted with connecting words to be more readable
+     *
+     * @param origin a lat long seperated by a comma, ex. "43.66384509183421,-79.39576369024316"
+     * @param destination a lat long seperated by a comma, ex. "43.66384509183421,-79.39576369024316"
+     * @param mode either "walking", "bicycling", or "driving"
+     * @return Written instructions how to get from origin to destination or "No route found" if there is no route,
+     * or ("Error making URL in getDirections" or "Error in parsing URL in getDirections") if the params are not formatted
+     * properly
+     *
      */
     public static String getDirections(String origin, String destination, String mode){
 
@@ -44,7 +49,7 @@ public class GoogleMapsApi {
                     "&mode=" + mode +
                     "&key=" + apiKey);
         } catch (MalformedURLException e) {
-            return "Error making URL in GoogleMapsAPI";
+            return "Error making URL in getDirections";
         }
 
         //Puts data from url into jsonObject
@@ -53,7 +58,7 @@ public class GoogleMapsApi {
             String text = IOUtils.toString(url, Charset.forName("UTF-8"));
             jsonObject = new JSONObject(text);
         } catch (IOException e) {
-            return "Error in parsing URL in GoogleMapsAPI";
+            return "Error in parsing URL in getDirections";
         }
 
         //Checks for valid route
@@ -87,9 +92,13 @@ public class GoogleMapsApi {
 
 
     /**
-     * Returns a lat and long for given address, if none is found returns null
-     * Try not to include special characters or extra details such as apartment numbers in address to minimize null results.
-     * and replace spaces with "+".
+     * Uses Google Maps Geocode Api to search for an address and find its latitude and longitude.
+     * Names of buildings or incomplete address can be used as an address as Google Maps will still search for them,
+     * but this will decrease reliability.
+     *
+     * @param address Do not include special characters and replace spaces with "+"
+     * @return a LatLong of the top result on Google Maps for address. Or null if none is found
+
      */
     public static LatLong getLatLongFromAddress(String address){
 

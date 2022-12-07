@@ -124,6 +124,14 @@ public class Controller implements Initializable, MapComponentInitializedListene
 
         // Event listener to handle if user selects a TreeItem.
         selected.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
+
+            /**
+             * Changes displayed text when the selected item in filterSearch is changed
+             * Displays the new destination and starting point.
+             * If there are 2 selections and neither of them are category headers,
+             * it will display directions from the start to destination.
+             *
+             */
             public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldVal,
                                 TreeItem<String> newVal) {
                 //Store the two possible point
