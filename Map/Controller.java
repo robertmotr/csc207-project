@@ -128,18 +128,31 @@ public class Controller implements Initializable, MapComponentInitializedListene
                 }
                 else{
                     try {
+                        //Sets text for when the if statement doesn't execute
                         sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue());
-                        if(!(prevVal.getChildren().contains("Places")) & !(currVal.getValue().contains("Places"))){
-                            String originInfo = PlaceInfo.specPlace(searchPlace(prevVal.getValue()));
-                            String destinationInfo = PlaceInfo.specPlace(searchPlace(currVal.getValue()));
-                            String destination = (destinationInfo.split("\n"))[1].replaceAll(" ", "+")+ "Toronto,+ON";
-                            String origin = (originInfo.split("\n"))[1].replaceAll(" ", "+") + "Toronto,+ON";
 
-                            if(GoogleMapsApi.getDirections(origin, destination,"walking").equals("No route found")){
-                                origin = prevVal.getValue().replaceAll(" ", "+") + "+University+Of+Toronto";
-                                destination = currVal.getValue().replaceAll(" ", "+") + "+University+Of+Toronto";
-                                System.out.println("first check failed");
+                        //Makes sure selections are actual places not headers
+                        if(!(prevVal.getChildren().contains("Places")) & !(currVal.getValue().contains("Places"))){
+
+                            //Gets info
+
+                            String[] originInfo = PlaceInfo.specPlace(searchPlace(prevVal.getValue())).split("\n");
+                            String[] destinationInfo = PlaceInfo.specPlace(searchPlace(currVal.getValue())).split("\n");
+
+                            //Tries to get address from PlaceInfo, if none is available searches using the name instead
+                            String origin = formatAddress(originInfo);
+                            String destination = formatAddress(destinationInfo);
+
+                            if(origin == null){
+                                origin = currVal.getValue().replaceAll(" ", "+") + "+Toronto,+ON";
                             }
+
+                            if(destination == null){
+                                destination = prevVal.getValue().replaceAll(" ", "+") + "+Toronto,+ON";
+                            }
+
+                            //Sets text
+
                             sidebar.setText("New destination is " + currVal.getValue() + ". \n Starting from: " + prevVal.getValue() + ". \n" +
                                     "Directions: " + GoogleMapsApi.getDirections(origin, destination, "walking"));
 
@@ -269,6 +282,9 @@ public class Controller implements Initializable, MapComponentInitializedListene
                     if(link != null){
                         display = PlaceInfo.specPlace(link);
                         String address = formatAddress(display.split("\n"));
+                        if(address == null){
+                            address = searchBar.getText().replaceAll(" ", "+") + "+Toronto+Ontario";
+                        }
                         LatLong coordinate = GoogleMapsApi.getLatLongFromAddress(address);
                         if(coordinate != null) {
                             this.currentSearchedPt = GoogleMapsInstance.addMarker(coordinate);
@@ -298,7 +314,7 @@ public class Controller implements Initializable, MapComponentInitializedListene
                 return address;
             }
         }
-        return searchBar.getText().replaceAll(" ", "+") + "+Toronto+Ontario";
+        return null;
     }
 
     @FXML
