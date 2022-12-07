@@ -1,4 +1,6 @@
 /**
+ * Template Method pattern
+ *
  * Reference to:
  * https://stackoverflow.com/questions/6159118/using-java-to-pull-data-from-a-webpage
  * https://stackoverflow.com/questions/7298817/making-image-scrollable-in-jframe-contentpane/7299067
@@ -185,6 +187,11 @@ public abstract class PlaceInfo {
         writer.close();
     }
 
+    /**
+     * Abstract class waiting to be finished
+     * @return
+     * @throws IOException
+     */
     public abstract ArrayList<Place> getTotlist() throws IOException;
 
 }

@@ -1,3 +1,7 @@
+/**
+ * Static Factory pattern
+ */
+
 package Features;
 
 import java.io.IOException;

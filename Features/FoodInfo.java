@@ -13,6 +13,10 @@ public class FoodInfo extends PlaceInfo {
     private String tot = "";
     ArrayList<Place> foodPlaceLIST = new ArrayList<>();
 
+    /**
+     * update type list
+     * @param l
+     */
     private void updatetyList(List<HtmlAnchor> l){
         for(HtmlAnchor build : l){
             String name = build.asNormalizedText();
@@ -21,18 +25,33 @@ public class FoodInfo extends PlaceInfo {
         }
     }
 
+    /**
+     * update FoodPlaceList
+     * @param l
+     * @param type
+     * @throws IOException
+     */
     private void updateFoodPlaceList(List<HtmlAnchor> l, String type) throws IOException {
         for(HtmlAnchor anch : l){
             this.foodPlaceLIST.add(Factory.createFoodPlace(anch.asNormalizedText(),anch.getHrefAttribute(), type));
         }
     }
 
+    /**
+     * find foodTypeLIST
+     * @throws IOException
+     */
     public void getfoodTypeLIST() throws IOException {
         foodTypeLIST = new HashMap<String,String>();
         List<HtmlAnchor> foodty = getAnchorsofNamesURL(FOODTYPEURL);
         updatetyList(foodty);
     }
 
+    /**
+     *
+     * @return foodPlaceLIST
+     * @throws IOException
+     */
     @Override
     public ArrayList<Place> getTotlist() throws IOException {
         getfoodTypeLIST();
@@ -45,6 +64,10 @@ public class FoodInfo extends PlaceInfo {
 
     }
 
+    /**
+     * Save FoodList list to file, used to generate back up
+     * @throws IOException
+     */
     public void saveFoodListFile() throws IOException {
         //Go through buildlist
         for(Place bui : this.foodPlaceLIST){
@@ -59,6 +82,10 @@ public class FoodInfo extends PlaceInfo {
 
     }
 
+    /**
+     * Save FoodType list to file, used to generate back up
+     * @throws IOException
+     */
     public void saveFoodTypeFile() throws IOException{
         //create file
         String filename = "foodTypeList.txt";
